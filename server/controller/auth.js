@@ -9,9 +9,9 @@ async function handleRegister(req,res){
             return res.status(400).json("Required all Credentials") 
         }
 
-        const userExist = User.findOne({email});
+        const userExist =await User.findOne({email});
         if(userExist){
-            return res.status(400).json("User already registered");
+            return res.status(400).json({message: "User already registered"});
         }
 
         const hashedPassword = await bcrypt.hash(password,10);
@@ -19,7 +19,7 @@ async function handleRegister(req,res){
         const user = await User.create({
             name:name,
             email:email,
-            password:hashedPassword
+            passwordHash:hashedPassword
         })
         return res.status(201).json("User created")
     }catch(err){
@@ -48,7 +48,7 @@ async function handleLogin(req,res){
     }
 }
 
-module.export ={
+module.exports ={
     handleRegister,
     handleLogin
 }
