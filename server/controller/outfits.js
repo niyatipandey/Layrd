@@ -1,5 +1,17 @@
 const Outfit = require('../models/Outfit')
 
+async function handleGetOutfit(req,res){
+    try{
+        const findOutfit =await Outfit.find({});
+        if(!findOutfit){
+            return res.status(404).json("No outfit found")
+        }
+        return res.status(200).json(findOutfit);
+    }catch(err){
+        return res.status(500).json({message:err.message});
+    }
+}
+
 async function handlePostOutfit(req,res){
     try{
         const tops = req.body.tops || null;
@@ -21,6 +33,24 @@ async function handlePostOutfit(req,res){
     }
 }
 
+async function handleDeleteOutfit(req,res){
+    try{
+        const id = req.params.id;
+        const deletedOutfit = await Outfit.findOneAndDelete({
+            _id:id,
+            userId:req.user.id
+        });
+        if(!deletedOutfit){
+            return res.status(404).json({message:"Outfit not found"})
+        }
+        return res.status(200).json({message:"Outfit deleted"});
+    }catch(err){
+        return res.status(500).json({message:err.message});
+    }
+}
+
 module.exports = {
-    handlePostOutfit
+    handleGetOutfit,
+    handlePostOutfit,
+    handleDeleteOutfit
 }

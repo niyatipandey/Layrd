@@ -1,9 +1,13 @@
 const express = require('express')
-const {handlePostOutfit} = require('../controller/outfits')
+const {handleGetOutfit,handlePostOutfit,handleDeleteOutfit} = require('../controller/outfits')
 const checkAuth = require('../middleware/auth')
 
 const router = express.Router();
 
-router.post('/',checkAuth,handlePostOutfit)
+router.route('/').
+get(checkAuth,handleGetOutfit).
+post(checkAuth,handlePostOutfit)
+
+router.delete('/:id',checkAuth,handleDeleteOutfit)
 
 module.exports = router;
