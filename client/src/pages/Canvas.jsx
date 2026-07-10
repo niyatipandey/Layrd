@@ -5,9 +5,7 @@ import { BASE_URL } from '../utils/api'
 import ClothingCard from '../components/ClothingCard'
 
 const Canvas = () => {
-  const [activeCategory, setActiveCategory] = useState("tops")
-      const [items, setItems] = useState([])
-      const [loading, setLoading] = useState(false);
+ 
   
       useEffect(() => {
           setLoading(true)
@@ -49,7 +47,7 @@ const Canvas = () => {
         </div>
         <div className='flex gap-10 items-start'>
           <div className='w-[35%]'>
-            <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe</h3>
+            <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe Selection</h3>
             <div className='flex mb-10 justify-between'>
                   {categories.map((category)=>(
                       <button key={category.value}
