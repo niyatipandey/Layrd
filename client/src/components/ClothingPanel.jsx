@@ -3,13 +3,13 @@ import { BASE_URL } from "../utils/api";
 import ClothingCard from "./ClothingCard";
 
 const ClothingPanel = ({columns,scroll,showAllCategory}) => {
-  const [activeCategory, setActiveCategory] = useState("tops");
+  const [activeCategory, setActiveCategory] = useState("top");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const categories = [
     { label: "All", value: "all" },
-    { label: "Tops", value: "tops" },
+    { label: "top", value: "top" },
     { label: "Bottoms", value: "bottom" },
     { label: "Shoes", value: "shoes" },
     { label: "Accessories", value: "accessory" },

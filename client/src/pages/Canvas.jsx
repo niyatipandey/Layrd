@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import ClothingPanel from '../components/ClothingPanel'
 import CanvasSlot from '../components/CanvasSlot'
 import { DndContext } from '@dnd-kit/core'
+import { BASE_URL, getAuthHeader } from '../utils/api'
 
 const Canvas = () => {
 
@@ -14,7 +15,7 @@ const Canvas = () => {
   })
 
   const categoryMap = {
-  tops: "top",
+  top: "top",
   bottom: "bottom",
   shoes: "shoes",
   accessory: "accessory",
@@ -35,6 +36,39 @@ const Canvas = () => {
     }))
   }
 
+
+  async function saveOutfit() {
+    try{
+      if (!selectedOutfit.top && !selectedOutfit.bottom && !selectedOutfit.shoes && !selectedOutfit.accessory) {
+        alert("Please add at least one item.");
+        return;
+      }
+      const outfitData = {
+      top: selectedOutfit.top?._id,
+      bottom: selectedOutfit.bottom?._id,
+      shoes: selectedOutfit.shoes?._id,
+      accessory: selectedOutfit.accessory?._id,
+      }
+      console.log("TOP:", outfitData.top);
+console.log("BOTTOM:", outfitData.bottom);
+console.log("SHOES:", outfitData.shoes);
+console.log("ACCESSORY:", outfitData.accessory);
+      const response = await fetch(`${BASE_URL}/outfits`,{
+        method:'post',
+        headers:getAuthHeader(),
+        body:JSON.stringify(outfitData),
+      })
+      const result = await response.json();
+      if(!response.ok){
+        alert(result.message);
+        return;
+      }
+      console.log(result)
+      alert("Outfit saved successfully")
+    }catch(err){
+      console.log(err);
+    }
+  }
 
   return (
     <>
@@ -103,7 +137,10 @@ const Canvas = () => {
               </div>
             </div>
             <div className='flex flex-col gap-5 items-start w-[180px] pt-12'>
-              <button className='w-full py-3 rounded-xl bg-[#2E2621] text-white hover:scale-105 transition-all'>Save Outfit</button>
+              <button className='w-full py-3 rounded-xl bg-[#2E2621] text-white hover:scale-105 transition-all'
+              onClick={()=>{
+                saveOutfit();
+              }}>Save Outfit</button>
               <button className='w-full py-3 rounded-xl border border-[#2E2621] bg-[#E7C76A] font-medium hover:scale-105 transition-all'>AI Stylist</button>
               <button className='w-full py-3 rounded-xl border border-[#DDD5C7] bg-white hover:scale-105 transition-all'
               onClick={()=>{

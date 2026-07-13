@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const mongoose = require('mongoose')
 const ClothingItem = require('./models/ClothingItem.js');
-const womenTops = require('./data/womenTops.json')
+const womentops = require('./data/womentops.json')
 const womenBottoms = require('./data/womenBottoms.json')
 const womenShoes = require('./data/womenShoes.json')
 const womenAccessories = require('./data/womenAccessories.json')
@@ -14,7 +14,7 @@ async function seed() {
         console.log("MongoDB Connected");
         await ClothingItem.deleteMany({})
         const items =[
-            ...womenTops,
+            ...womentops,
             ...womenBottoms,
             ...womenShoes,
             ...womenAccessories

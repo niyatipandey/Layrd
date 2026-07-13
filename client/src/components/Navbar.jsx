@@ -13,6 +13,8 @@ const Navbar = () => {
                 className="hover:text-[#2E2621] transition-colors">Library</Link>
                 <Link to='/canvas'
                 className="hover:text-[#2E2621] transition-colors">Canvas</Link>
+                <Link to='/wardrobe'
+                className="hover:text-[#2E2621] transition-colors">Wardrobe</Link>
                 <Link to='/ai'
                 className="hover:text-[#2E2621] transition-colors">AI Stylist</Link>
             </div>

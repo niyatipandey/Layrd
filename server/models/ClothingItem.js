@@ -4,7 +4,7 @@ const clothingItemSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     gender: { type: String, enum: ['men', 'women', 'unisex'], required: true },
-    category: { type: String, enum: ['tops', 'bottom', 'shoes', 'accessory'], required: true },
+    category: { type: String, enum: ['top', 'bottom', 'shoes', 'accessory'], required: true },
     subCategory: { type: String },
     style: [String],
     occasion: [String],

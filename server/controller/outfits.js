@@ -2,23 +2,28 @@ const Outfit = require('../models/Outfit')
 
 async function handleGetOutfit(req,res){
     try{
-        const findOutfit =await Outfit.find({userId:req.user.id})
-            .populate("slots.tops")
+        const findOutfit = await Outfit.find({
+  userId: req.user.id
+});
+        /*const findOutfit =await Outfit.find({userId:req.user.id})
+            .populate("slots.top")
             .populate("slots.bottom")
             .populate("slots.shoes")
             .populate("slots.accessory")
         if(findOutfit.length === 0){
             return res.status(404).json("No outfit found")
-        }
+        }*/
         return res.status(200).json(findOutfit);
     }catch(err){
+        console.log(err)
         return res.status(500).json({message:err.message});
     }
 }
 
 async function handlePostOutfit(req,res){
     try{
-        const tops = req.body.tops || null;
+        console.log("body : ",req.body)
+        const top = req.body.top || null;
         const bottom = req.body.bottom || null;
         const shoes = req.body.shoes || null;
         const accessory = req.body.accessory || null;
@@ -26,7 +31,7 @@ async function handlePostOutfit(req,res){
         const createOutfit =await Outfit.create({
             userId:req.user.id,
             slots:{
-                tops:tops,
+                top:top,
                 bottom:bottom,
                 shoes:shoes,
                 accessory:accessory

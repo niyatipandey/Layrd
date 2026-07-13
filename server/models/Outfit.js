@@ -7,7 +7,7 @@ const outfitSchema = new mongoose.Schema({
         required:true
     },
     slots:{
-        tops:{
+        top:{
             type:mongoose.Schema.Types.ObjectId,
             ref :'ClothingItem',
             default:null

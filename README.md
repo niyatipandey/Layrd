@@ -36,7 +36,7 @@ Layrd is a full-stack MERN outfit planning application that helps users build ou
 
 ### 👗 Clothing Library
 - Browse a curated wardrobe collection
-- Filter by category (Tops, Bottoms, Shoes, Accessories)
+- Filter by category (top, Bottoms, Shoes, Accessories)
 - Rich clothing metadata (color, style tags, season)
 - Editorial-quality UI
 - Search *(in progress)*
@@ -133,7 +133,7 @@ Layrd is a full-stack MERN outfit planning application that helps users build ou
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/items` | Get all clothing items |
-| `GET` | `/items?category=tops` | Filter by category |
+| `GET` | `/items?category=top` | Filter by category |
 | `GET` | `/items/:id` | Get a single clothing item |
 
 ### Outfits *(Protected)*
