@@ -27,6 +27,7 @@ const Register = () => {
                 setError(data.message);
                 return;
             }
+            alert("Created account Successfully!")
             navigate('/login')
         }catch(err){
             setError("Register failed")

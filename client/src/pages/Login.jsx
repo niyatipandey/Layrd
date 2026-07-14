@@ -34,6 +34,7 @@ const Login = () => {
                 return;
             }
             login(data.token,data.user);
+            alert("Logged in Successfully!")
             navigate('/library')
         }catch(err){
             setError("Login failed. Check your credentials.")

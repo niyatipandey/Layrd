@@ -4,6 +4,7 @@ import ClothingPanel from '../components/ClothingPanel'
 import CanvasSlot from '../components/CanvasSlot'
 import { DndContext } from '@dnd-kit/core'
 import { BASE_URL, getAuthHeader } from '../utils/api'
+import { Loader2 } from "lucide-react";
 
 const Canvas = () => {
 
@@ -13,6 +14,8 @@ const Canvas = () => {
     shoes:null,
     accessory:null
   })
+
+  const [isStyling, setIsStyling] = useState(false)
 
   const categoryMap = {
   top: "top",
@@ -61,18 +64,41 @@ const Canvas = () => {
         return;
       }
       console.log(result)
-      alert("Outfit saved successfully")
+      alert("Outfit saved successfully!")
     }catch(err){
       console.log(err);
     }
   }
 
   async function aiSuggestion(){
-    const outfitData = {
-        top: selectedOutfit.top?.name,
-        bottom: selectedOutfit.bottom?.name,
-        shoes: selectedOutfit.shoes?.name,
-        accessory: selectedOutfit.accessory?.name,
+    setIsStyling(true)
+    try{
+      if(
+        selectedOutfit.top &&
+        selectedOutfit.bottom &&
+        selectedOutfit.shoes &&
+        selectedOutfit.accessory
+      ){
+        alert("Your outfit is already complete");
+        setIsStyling(false);
+        return;
+      }
+      
+      if (
+        !selectedOutfit.top &&
+        !selectedOutfit.bottom &&
+        !selectedOutfit.shoes &&
+        !selectedOutfit.accessory
+      ) {
+        alert("Please add at least one clothing item before using AI Stylist.");
+        return;
+      }
+
+      const outfitData = {
+          top: selectedOutfit.top?.name,
+          bottom: selectedOutfit.bottom?.name,
+          shoes: selectedOutfit.shoes?.name,
+          accessory: selectedOutfit.accessory?.name,
       }
 
       const response = await fetch(`${BASE_URL}/ai/suggest`,{
@@ -81,6 +107,11 @@ const Canvas = () => {
         body:JSON.stringify(outfitData)
       })
       const data = await response.json();
+      if(!response.ok){
+        alert(data.message);
+        setIsStyling(false);
+        return;
+      }
       setSelectedOutfit((prev)=>({
         ...prev,
         top: prev.top || data.top || null,
@@ -88,6 +119,12 @@ const Canvas = () => {
         shoes: prev.shoes || data.shoes || null,
         accessory: prev.accessory || data.accessory || null
       }))
+      alert("✨ Outfit completed by AI!");
+      setIsStyling(false)
+    }catch(err){
+      console.log(err);
+      setIsStyling(false);
+    }
   }
 
   return (
@@ -158,11 +195,27 @@ const Canvas = () => {
             </div>
             <div className='flex flex-col gap-5 items-start w-[180px] pt-12'>
               <button className='w-full py-3 rounded-xl bg-[#2E2621] text-white hover:scale-105 transition-all'
-              onClick={()=>{
-                saveOutfit();
-              }}>Save Outfit</button>
-              <button className='w-full py-3 rounded-xl border border-[#2E2621] bg-[#E7C76A] font-medium hover:scale-105 transition-all'
-              onClick={aiSuggestion}>AI Stylist</button>
+                  onClick={()=>{
+                    saveOutfit();
+                  }}>Save Outfit</button>
+                  <button
+                disabled={isStyling}
+                className={`w-full py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2
+                ${
+                  isStyling
+                    ? "bg-gray-300 text-[#2E2621] cursor-not-allowed"
+                    : "border border-[#2E2621] bg-[#E7C76A] hover:scale-105"
+                }`}
+                onClick={aiSuggestion}>
+                {isStyling ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Styling...</span>
+                  </>
+                ) : (
+                  "✨ AI Stylist"
+                )}
+              </button>
               <button className='w-full py-3 rounded-xl border border-[#DDD5C7] bg-white hover:scale-105 transition-all'
               onClick={()=>{
                 setSelectedOutfit({

@@ -44,7 +44,7 @@ const Wardrobe = () => {
             return;
         }
         setOutfits((prev)=> prev.filter((outfit)=> outfit._id !== id));
-        alert("Outfit deleted Successfully")
+        alert("Outfit deleted Successfully!")
     }catch(err){
         console.log(err);
     }

@@ -84,10 +84,15 @@ async function handleAiSuggestion(req,res) {
         }
         return res.json(recommendedItems)
     }catch(err){
-        console.log(err);
+        if(err.status === 429){
+            return res.status(429).json({
+                message: "AI Stylist is temporarily busy. Please try again in a few seconds."
+            });
+        }
+
         return res.status(500).json({
-            message:err.message
-        })
+            message:"Something went wrong."
+        });
     }
 }
 
