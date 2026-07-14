@@ -2,73 +2,107 @@
 
 **Build your wardrobe. Style your look.**
 
-Layrd is a full-stack MERN outfit planning application that helps users build outfits from a digital wardrobe — browse curated clothing, drag pieces onto an interactive canvas, save complete looks, and get AI-powered recommendations.
+Layrd is a full-stack MERN outfit planning application that helps users build outfits from a digital wardrobe. Browse curated clothing, drag pieces onto an interactive outfit canvas, save complete looks, and receive AI-powered outfit recommendations using Gemini.
 
 ![Status](https://img.shields.io/badge/status-active%20development-orange?style=flat-square)
 ![Stack](https://img.shields.io/badge/stack-MERN-blue?style=flat-square)
 ![AI](https://img.shields.io/badge/AI-Gemini-purple?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
-</div>
+---
+
+# 📚 Table of Contents
+
+- Features
+- Tech Stack
+- Database Models
+- API Reference
+- Backend Status
+- Project Structure
+- Roadmap
+- Why Layrd
 
 ---
 
-## Table of Contents
+# ✨ Features
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Database Models](#-database-models)
-- [API Reference](#-api-reference)
-- [Project Structure](#-project-structure)
-- [Roadmap](#-roadmap)
-- [Why Layrd](#-why-layrd)
+## 🔐 Authentication
 
----
-
-## ✨ Features
-
-### 🔐 Authentication
-- User registration and login
-- JWT-based authentication
-- Password hashing with bcrypt
+- User registration
+- User login
+- JWT authentication
+- Password hashing using bcrypt
 - Protected routes
 - User-specific wardrobe and outfits
 
-### 👗 Clothing Library
-- Browse a curated wardrobe collection
-- Filter by category (top, Bottoms, Shoes, Accessories)
-- Rich clothing metadata (color, style tags, season)
-- Editorial-quality UI
-- Search *(in progress)*
+---
 
-### 🎨 Outfit Builder
-- Interactive drag-and-drop canvas
-- Four outfit slots — Top, Bottom, Shoes, Accessory
-- Replace or remove individual pieces
-- Clear entire outfit
-- Save outfits *(in progress)*
+## 👗 Clothing Library
 
-### 🤖 AI Stylist *(Planned)*
-- Complete outfits using Gemini AI
-- Suggest matching pieces from your wardrobe
-- Recommendations based on style compatibility, occasion, season, and color
+- Browse curated wardrobe collection
+- Filter clothing by category
+- Rich clothing metadata
+  - Style
+  - Occasion
+  - Season
+  - Color
+- Editorial-quality clothing images
 
 ---
 
-## 🛠 Tech Stack
+## 🎨 Outfit Builder
+
+- Interactive drag-and-drop canvas
+- Four outfit slots
+  - Top
+  - Bottom
+  - Shoes
+  - Accessory
+- Category validation while dragging
+- Replace outfit pieces
+- Remove individual pieces
+- Clear entire outfit
+- Save outfits
+
+---
+
+## 🧥 My Wardrobe
+
+- View saved outfits
+- Outfit preview cards
+- Delete outfits
+- User-specific wardrobe storage
+
+---
+
+## 🤖 AI Stylist
+
+- Powered by Gemini
+- Completes incomplete outfits
+- Suggests only clothing available in the user's wardrobe
+- Recommendations based on
+  - Style
+  - Occasion
+  - Season
+  - Color compatibility
+- Automatically fills missing outfit slots on the canvas
+
+---
+
+# 🛠 Tech Stack
 
 | Layer | Technology |
-|---|---|
+|--------|------------|
 | Frontend | React, Vite, Tailwind CSS |
 | Backend | Node.js, Express.js |
 | Database | MongoDB, Mongoose |
-| Auth | JWT, bcryptjs |
+| Authentication | JWT, bcryptjs |
 | AI | Gemini API |
 | Drag & Drop | @dnd-kit/core |
 
 ---
 
-## 📂 Database Models
+# 📂 Database Models
 
 <details>
 <summary><strong>User</strong></summary>
@@ -90,9 +124,17 @@ Layrd is a full-stack MERN outfit planning application that helps users build ou
 {
   "name": "String",
   "category": "String",
+  "subCategory": "String",
+  "style": ["String"],
+  "occasion": ["String"],
+  "season": ["String"],
   "color": "String",
-  "styleTags": ["String"],
-  "season": "String",
+  "material": "String",
+  "fit": "String",
+  "formality": "Number",
+  "warmth": "Number",
+  "layering": "Boolean",
+  "tags": ["String"],
   "imageUrl": "String"
 }
 ```
@@ -105,95 +147,96 @@ Layrd is a full-stack MERN outfit planning application that helps users build ou
 ```json
 {
   "userId": "ObjectId → User",
-  "top": "ObjectId → ClothingItem",
-  "bottom": "ObjectId → ClothingItem",
-  "shoes": "ObjectId → ClothingItem",
-  "accessory": "ObjectId → ClothingItem",
-  "savedAt": "Date"
+  "slots": {
+    "top": "ObjectId → ClothingItem",
+    "bottom": "ObjectId → ClothingItem",
+    "shoes": "ObjectId → ClothingItem",
+    "accessory": "ObjectId → ClothingItem"
+  }
 }
 ```
 
-> Each outfit stores `ObjectId` references to clothing items, populated when fetching saved outfits.
+Each outfit stores ObjectId references to clothing items, populated when fetching saved outfits.
 
 </details>
 
 ---
 
-## 📡 API Reference
+# 📡 API Reference
 
-### Authentication
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/auth/register` | Register a new user |
-| `POST` | `/auth/login` | Login and receive JWT |
-
-### Clothing Items
+## Authentication
 
 | Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/items` | Get all clothing items |
-| `GET` | `/items?category=top` | Filter by category |
-| `GET` | `/items/:id` | Get a single clothing item |
-
-### Outfits *(Protected)*
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/outfits` | Save an outfit |
-| `GET` | `/outfits` | Get the current user's outfits |
-| `DELETE` | `/outfits/:id` | Delete an outfit |
-
-### AI *(Planned)*
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/ai/suggest` | Complete an outfit using Gemini |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Login and receive JWT |
 
 ---
 
-## ✅ Backend Status
+## Clothing Items
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/items` | Get all clothing items |
+| GET | `/items?category=top` | Filter by category |
+| GET | `/items/:id` | Get clothing item details |
+
+---
+
+## Outfits *(Protected)*
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/outfits` | Save outfit |
+| GET | `/outfits` | Get user's outfits |
+| DELETE | `/outfits/:id` | Delete outfit |
+
+---
+
+## AI *(Protected)*
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/ai/suggest` | Complete missing outfit slots using Gemini |
+
+---
+
+# ✅ Backend Status
 
 - [x] MongoDB integration
 - [x] JWT authentication
-- [x] Auth middleware
+- [x] Authentication middleware
 - [x] Password hashing
 - [x] Clothing API
 - [x] Outfit CRUD API
 - [x] User-specific data
-- [x] Database seed script
+- [x] MongoDB seed script
+- [x] Gemini AI integration
+- [x] AI recommendation endpoint
+- [x] MongoDB item matching
 - [x] Postman tested
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 Layrd/
-│
-├── client/                   # React frontend
+
+├── client/
 │   ├── src/
 │   │   ├── assets/
 │   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── ClothingCard.jsx
-│   │   │   ├── ClothingPanel.jsx
-│   │   │   ├── CanvasSlot.jsx
-│   │   │   └── OutfitCanvas.jsx
 │   │   ├── context/
-│   │   │   └── GenderContext.js
 │   │   ├── pages/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Library.jsx
-│   │   │   └── Canvas.jsx
 │   │   └── utils/
-│   │       └── api.js
 │
-└── server/                   # Express backend
+└── server/
     ├── controllers/
     ├── middleware/
     ├── models/
     ├── routes/
+    ├── services/
     ├── data/
     ├── seed.js
     └── index.js
@@ -201,50 +244,66 @@ Layrd/
 
 ---
 
-## 🗺 Roadmap
+# 🗺 Roadmap
 
-### ✅ Completed
-- Project setup and folder structure
-- JWT authentication system
-- MongoDB database and models
-- Clothing collection and API
+## ✅ Completed
+
+- Project setup
+- JWT authentication
+- MongoDB database
+- Clothing library
 - Outfit CRUD API
-- Interactive drag-and-drop outfit canvas
-- Category filtering and validation
-- Outfit editing (replace, remove, clear)
-
-### 🚧 In Progress
-- Save outfits (frontend)
+- Drag-and-drop outfit builder
+- Category validation
+- Outfit editing
+- Save outfits
 - Wardrobe page
+- Delete outfits
+- Gemini AI Stylist
+
+---
+
+## 🚧 In Progress
+
 - Search functionality
-- Frontend polish and animations
-
-### 🔜 Planned
-- AI Stylist powered by Gemini
-- Responsive / mobile design
-- Loading skeletons and empty states
-- Deployment — Render (backend) + Vercel (frontend)
+- Loading states
+- Responsive design
+- UI polish
+- Animations
 
 ---
 
-## 💡 Why Layrd?
+## 🔜 Planned
 
-Most wardrobe apps focus on **storing** clothes.
-
-**Layrd focuses on creating outfits.**
-
-Users can visually build complete looks on an interactive drag-and-drop canvas, then let an AI Stylist intelligently fill in missing pieces based on style compatibility, occasion, season, and what's already in their wardrobe.
-
-The goal is to make outfit planning **simple, visual, and personal.**
+- AI explanation for outfit recommendations
+- Toast notifications
+- Empty states
+- Deployment
+  - Frontend → Vercel
+  - Backend → Render
 
 ---
 
-## 📌 Status
+# 💡 Why Layrd?
 
-> 🚧 Backend complete. Frontend actively under development.
+Most wardrobe applications focus on helping users organize clothes.
+
+**Layrd focuses on creating complete outfits.**
+
+Users can visually build looks using an interactive drag-and-drop canvas, save personalized outfits, and use an AI Stylist powered by Gemini to intelligently complete missing pieces using only items available in their own wardrobe.
+
+The goal is to make outfit planning simple, visual, and personal.
+
+---
+
+# 📌 Status
+
+> 🚧 Core functionality is completed. The project is currently focused on UI polish, responsiveness, and deployment.
 
 ---
 
 <div align="center">
-  <sub>Built with ♥ using React · Node.js · MongoDB · Gemini AI</sub>
+
+**Built with ❤️ using React · Node.js · MongoDB · Gemini AI**
+
 </div>
