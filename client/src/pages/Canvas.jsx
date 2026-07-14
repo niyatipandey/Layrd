@@ -44,10 +44,10 @@ const Canvas = () => {
         return;
       }
       const outfitData = {
-      top: selectedOutfit.top?._id,
-      bottom: selectedOutfit.bottom?._id,
-      shoes: selectedOutfit.shoes?._id,
-      accessory: selectedOutfit.accessory?._id,
+        top: selectedOutfit.top?._id,
+        bottom: selectedOutfit.bottom?._id,
+        shoes: selectedOutfit.shoes?._id,
+        accessory: selectedOutfit.accessory?._id,
       }
 
       const response = await fetch(`${BASE_URL}/outfits`,{
@@ -65,6 +65,29 @@ const Canvas = () => {
     }catch(err){
       console.log(err);
     }
+  }
+
+  async function aiSuggestion(){
+    const outfitData = {
+        top: selectedOutfit.top?.name,
+        bottom: selectedOutfit.bottom?.name,
+        shoes: selectedOutfit.shoes?.name,
+        accessory: selectedOutfit.accessory?.name,
+      }
+
+      const response = await fetch(`${BASE_URL}/ai/suggest`,{
+        method:"POST",
+        headers:getAuthHeader(),
+        body:JSON.stringify(outfitData)
+      })
+      const data = await response.json();
+      setSelectedOutfit((prev)=>({
+        ...prev,
+        top: prev.top || data.top || null,
+        bottom: prev.bottom || data.bottom || null,
+        shoes: prev.shoes || data.shoes || null,
+        accessory: prev.accessory || data.accessory || null
+      }))
   }
 
   return (
@@ -138,7 +161,8 @@ const Canvas = () => {
               onClick={()=>{
                 saveOutfit();
               }}>Save Outfit</button>
-              <button className='w-full py-3 rounded-xl border border-[#2E2621] bg-[#E7C76A] font-medium hover:scale-105 transition-all'>AI Stylist</button>
+              <button className='w-full py-3 rounded-xl border border-[#2E2621] bg-[#E7C76A] font-medium hover:scale-105 transition-all'
+              onClick={aiSuggestion}>AI Stylist</button>
               <button className='w-full py-3 rounded-xl border border-[#DDD5C7] bg-white hover:scale-105 transition-all'
               onClick={()=>{
                 setSelectedOutfit({
