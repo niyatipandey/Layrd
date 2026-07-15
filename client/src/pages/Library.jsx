@@ -1,7 +1,10 @@
 import Navbar from '../components/Navbar'
 import ClothingPanel from '../components/ClothingPanel'
+import { useState } from 'react'
 
 const Library = () => {
+
+    const [searchQuery, setSearchQuery] = useState("")
     
   return (
     <>
@@ -17,6 +20,9 @@ const Library = () => {
                         type="text"
                         placeholder="Search your wardrobe..."
                         className="w-full rounded-2xl border border-[#DDD5C7] bg-white py-4 pl-14 pr-5 text-[#2E2621] placeholder:text-[#A69B8C] outline-none focus:border-[#B87A4A]"
+                        onChange={(e)=>{
+                            setSearchQuery(e.target.value)
+                        }}
                     />
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +39,7 @@ const Library = () => {
                     </svg>
                 </div>
             </div>
-            <ClothingPanel columns={3} scroll={false} showAllCategory={true}/>
+            <ClothingPanel columns={3} scroll={false} showAllCategory={true} searchQuery={searchQuery}/>
         </main>
     </>
   )

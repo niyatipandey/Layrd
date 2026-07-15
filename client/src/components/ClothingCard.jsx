@@ -1,8 +1,8 @@
 import React from "react";
-import { useDraggable } from "@dnd-kit/core";
+import {useDraggable } from "@dnd-kit/core";
 
 const ClothingCard = ({ item }) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: item._id,
     data: {
       item,
@@ -14,6 +14,7 @@ const ClothingCard = ({ item }) => {
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
     zIndex: transform ? 999 : "auto",
+    opacity: isDragging ? 0.85 : 1,
   };
 
   return (
@@ -22,22 +23,25 @@ const ClothingCard = ({ item }) => {
       style={style}
       {...listeners}
       {...attributes}
-      className="bg-white rounded-2xl shadow-sm cursor-grab active:cursor-grabbing"
+      className="group bg-white rounded-2xl shadow-sm cursor-grab active:cursor-grabbing overflow-hidden transition-shadow duration-300 hover:shadow-lg"
     >
-      <img
-        src={item.imageUrl}
-        alt={item.name}
-        draggable={false}
-        className="w-full h-80 object-contain p-4"
-      />
+      <div className="relative w-full aspect-square bg-[#F8F5F0] overflow-hidden">
+        <img
+          src={item.imageUrl}
+          alt={item.name}
+          draggable={false}
+          className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+      <div className="px-3 py-3 border-t border-[#F0EBE3]">
+        <h3 className="mt-4 text-base font-medium text-[#2E2621]">
+          {item.name}
+        </h3>
 
-      <h3 className="mt-4 text-base font-medium text-[#2E2621]">
-        {item.name}
-      </h3>
-
-      <p className="text-sm text-[#8A8072]">
-        {item.color}
-      </p>
+        <p className="text-sm text-[#8A8072]">
+          {item.color}
+        </p>
+      </div>
     </div>
   );
 };

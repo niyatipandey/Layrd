@@ -62,7 +62,7 @@ const Wardrobe = () => {
         onClick={() => navigate("/canvas")}>
           + New Outfit
         </button>
-        <div>
+        <div className='grid grid-cols-3 gap-6 mt-8'>
           {outfits.map((outfit)=>(
             <OutfitCard key={outfit._id} outfit={outfit}
             onDelete={()=> deleteOutfit(outfit._id)} />

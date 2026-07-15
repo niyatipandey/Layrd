@@ -144,18 +144,29 @@ const Canvas = () => {
             <div className='flex-1 min-w-0'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-6">Canvas</h3>
               <div className="space-y-6">
-                <CanvasSlot
-                    icon="👚"
-                    title="Top"
-                    selectedItem = {selectedOutfit.top}
-                    onRemove={()=>(
-                      setSelectedOutfit((prev)=>({
-                        ...prev,
-                        top:null
-                      }))
-                    )}
-                />
-
+                <div className='grid grid-cols-2 gap-4'>
+                  <CanvasSlot
+                      icon="👚"
+                      title="Top"
+                      selectedItem = {selectedOutfit.top}
+                      onRemove={()=>(
+                        setSelectedOutfit((prev)=>({
+                          ...prev,
+                          top:null
+                        }))
+                      )}
+                  />
+                  <CanvasSlot
+                      icon="👜"
+                      title="Accessory"
+                      selectedItem = {selectedOutfit.accessory}
+                      onRemove={()=>(
+                        setSelectedOutfit((prev)=>({
+                          ...prev,
+                          accessory:null
+                        }))
+                      )}
+                  />
                 <CanvasSlot
                     icon="👖"
                     title="Bottom"
@@ -179,18 +190,7 @@ const Canvas = () => {
                       }))
                     )}
                 />
-
-                <CanvasSlot
-                    icon="👜"
-                    title="Accessory"
-                    selectedItem = {selectedOutfit.accessory}
-                    onRemove={()=>(
-                      setSelectedOutfit((prev)=>({
-                        ...prev,
-                        accessory:null
-                      }))
-                    )}
-                />
+                </div>
               </div>
             </div>
             <div className='flex flex-col gap-5 items-start w-[180px] pt-12'>

@@ -3,31 +3,36 @@ import { BASE_URL, getAuthHeader } from '../utils/api'
 
 export const OutfitCard = ({outfit,onDelete }) => {
 
+    const slots = [
+        outfit.slots.top,
+        outfit.slots.bottom,
+        outfit.slots.shoes,
+        outfit.slots.accessory
+    ].filter(Boolean)
+
   return (
-      <div className='bg-white rounded-3xl shadow-sm p-6 hover:shadow-lg transition-all'>
-        Saved on {new Date(outfit.createdAt).toLocaleDateString()}
-        <div className='flex justify-evenly items-center mt-6'>
-            {outfit.slots.top && (
-                <img src={outfit.slots.top.imageUrl}
-                className="w-24 h-24 object-contain" />
-            )}
-            {outfit.slots.bottom && (
-                <img src={outfit.slots.bottom.imageUrl}
-                className="w-24 h-24 object-contain" />
-            )}
-            {outfit.slots.shoes && (
-                <img src={outfit.slots.shoes.imageUrl}
-                className="w-24 h-24 object-contain" />
-            )}
-            {outfit.slots.accessory && (
-                <img src={outfit.slots.accessory.imageUrl}
-                className="w-24 h-24 object-contain" />
-            )}
+      <div className='bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden hover:scale-103'>
+        <div className='grid grid-cols-2 gap-[2px] bg-[#F0EBE3]'>
+            {[outfit.slots.top, outfit.slots.bottom, outfit.slots.shoes, outfit.slots.accessory].map((item, i) => (
+                <div key={i} className='bg-[#FAFAF8] aspect-square flex items-center justify-center p-3'>
+                    {item ? (
+                    <img src={item.imageUrl} alt={item.name}
+                        className='w-full h-full object-contain' />
+                    ) : (
+                    <div className='w-full h-full border border-dashed border-[#DDD5C7] rounded-lg' />
+                    )}
+                </div>
+            ))}
         </div>
-        <button className="mt-6 text-red-500 hover:text-red-700"
-        onClick={onDelete}>
+        <div className='px-4 py-3 flex items-center justify-between'>
+            <p className='text-xs text-[#8A8072]'>
+            {new Date(outfit.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </p>
+            <button onClick={onDelete}
+            className='text-xs text-[#8A8072] hover:text-red-500 transition-colors'>
             Delete
-        </button>
+            </button>
+        </div>
       </div>
     )
 }

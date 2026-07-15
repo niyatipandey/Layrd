@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/api";
 import ClothingCard from "./ClothingCard";
 
-const ClothingPanel = ({columns,scroll,showAllCategory}) => {
+const ClothingPanel = ({columns,scroll,showAllCategory, searchQuery = ""}) => {
   const [activeCategory, setActiveCategory] = useState("top");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const categories = [
     { label: "All", value: "all" },
-    { label: "top", value: "top" },
+    { label: "Top", value: "top" },
     { label: "Bottoms", value: "bottom" },
     { label: "Shoes", value: "shoes" },
     { label: "Accessories", value: "accessory" },
@@ -32,7 +32,6 @@ const ClothingPanel = ({columns,scroll,showAllCategory}) => {
         const data = await result.json();
 
         if (!result.ok) return;
-
         setItems(data);
       } catch (err) {
         console.log(err);
@@ -43,6 +42,13 @@ const ClothingPanel = ({columns,scroll,showAllCategory}) => {
 
     fetchItems();
   }, [activeCategory]);
+
+  const filteredItems = items.filter((item)=>{
+    return(
+      item.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.color?.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })
 
   return (
     <>
@@ -63,7 +69,7 @@ const ClothingPanel = ({columns,scroll,showAllCategory}) => {
       </div>
 
       <div className={`grid gap-8 ${columns === 2 ? "grid-cols-2" : "grid-cols-3"} ${scroll ? "max-h-[64vh] overflow-y-auto pr-2" : ""}`}>
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <ClothingCard key={item._id} item={item} />
         ))}
       </div>
