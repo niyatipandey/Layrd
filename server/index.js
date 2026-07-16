@@ -11,17 +11,15 @@ const port = process.env.PORT || 3000;
 
 const cors = require("cors");
 
-const corsOptions = {
+app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://layrd-eight.vercel.app",
+    "https://layrd-eight.vercel.app"
   ],
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+  credentials: false,
+}));
 app.use(express.static('public'))
 
 app.use(express.urlencoded({extended :false}));
