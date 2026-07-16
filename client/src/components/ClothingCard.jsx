@@ -30,10 +30,10 @@ const ClothingCard = ({ item }) => {
           src={item.imageUrl}
           alt={item.name}
           draggable={false}
-          className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain p-2 sm:p-4 transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="px-3 py-3 border-t border-[#F0EBE3]">
+      <div className="px-2 py-2 sm:px-3 sm:py-3 border-t border-[#F0EBE3]">
         <h3 className="mt-4 text-base font-medium text-[#2E2621]">
           {item.name}
         </h3>

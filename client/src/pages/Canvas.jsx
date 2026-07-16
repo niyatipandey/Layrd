@@ -136,12 +136,12 @@ const Canvas = () => {
           <p className='text-[#8A8072] mt-2'>Create your next look from your wardrobe</p>
         </div>
         <DndContext onDragEnd={handleDragEnd}>
-          <div className='flex gap-10 items-start'>
-            <div className='w-[35%]'>
+          <div className='flex flex-col lg:flex-row gap-10 items-start'>
+            <div className='w-full lg:w-[35%]'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe Selection</h3>
-              <ClothingPanel columns={2} scroll={true} showAllCategory={false}/>
+              <ClothingPanel columns={2} mobileScroll={true} desktopScroll={true} showAllCategory={false} mobileCarousel/>
             </div>
-            <div className='flex-1 min-w-0'>
+            <div className='w-full lg:flex-1 min-w-0'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-6">Canvas</h3>
               <div className="space-y-6">
                 <div className='grid grid-cols-2 gap-4'>
@@ -193,7 +193,7 @@ const Canvas = () => {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col gap-5 items-start w-[180px] pt-12'>
+            <div className='w-full lg:w-[180px] flex flex-col gap-5 lg:pt-12'>
               <button className='cursor-pointer w-full py-3 rounded-xl bg-[#2E2621] text-white hover:scale-105 transition-all'
                   onClick={()=>{
                     saveOutfit();

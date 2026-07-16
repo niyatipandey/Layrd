@@ -9,13 +9,13 @@ const Library = () => {
   return (
     <>
         <Navbar/>
-        <main className='max-w-7xl mx-auto px-8 py-10'>
-            <div className='flex items-start justify-between gap-12 mb-10'>
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-10">
                 <div className='w-fit'>
-                    <h1 className='font-serif text-5xl text-[#2E2621]'>Library</h1>
+                    <h1 className='font-serif text-3xl sm:text-4xl lg:text-5xl text-[#2E2621]'>Library</h1>
                     <p className='text-[#8A8072] mt-2'>Browse and discover wardrobe pieces</p>
                 </div>
-                <div className="w-[65%] relative">
+                <div className="w-full lg:w-[65%] relative">
                     <input
                         type="text"
                         placeholder="Search your wardrobe..."
@@ -39,7 +39,7 @@ const Library = () => {
                     </svg>
                 </div>
             </div>
-            <ClothingPanel columns={3} scroll={false} showAllCategory={true} searchQuery={searchQuery}/>
+            <ClothingPanel columns={3} mobileScroll={true} showAllCategory={true} searchQuery={searchQuery}/>
         </main>
     </>
   )

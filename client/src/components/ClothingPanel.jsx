@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/api";
 import ClothingCard from "./ClothingCard";
 
-const ClothingPanel = ({columns,scroll,showAllCategory, searchQuery = ""}) => {
+const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,mobileCarousel = false, searchQuery = ""}) => {
   const [activeCategory, setActiveCategory] = useState("top");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,12 +52,12 @@ const ClothingPanel = ({columns,scroll,showAllCategory, searchQuery = ""}) => {
 
   return (
     <>
-      <div className="flex mb-10 justify-between">
+      <div className="flex gap-3 mb-8 overflow-x-auto whitespace-nowrap pb-2 justify-between">
         {visibleCategories.map((category) => (
           <button
             key={category.value}
             onClick={() => setActiveCategory(category.value)}
-            className={`px-5 py-2 rounded-full text-base font-medium transition-all duration-200 cursor-pointer
+            className={`flex-shrink-0 px-5 py-2 rounded-full text-base font-medium transition-all duration-200 cursor-pointer
               ${
                 activeCategory === category.value
                   ? "bg-[#E7C76A] text-[#2E2621] shadow-md"
@@ -68,11 +68,44 @@ const ClothingPanel = ({columns,scroll,showAllCategory, searchQuery = ""}) => {
         ))}
       </div>
 
-      <div className={`grid gap-8 ${columns === 2 ? "grid-cols-2" : "grid-cols-3"} ${scroll ? "max-h-[64vh] overflow-y-auto pr-2" : ""}`}>
+      {mobileCarousel ? (
+      <>
+        <div className="flex gap-3 overflow-x-auto lg:hidden pb-2">
+          {filteredItems.map((item) => (
+            <div key={item._id} className="w-28 sm:w-32 flex-shrink-0">
+              <ClothingCard item={item} />
+            </div>
+          ))}
+        </div>
+        <div
+          className={`hidden lg:grid gap-8 ${
+            columns === 2 ? "grid-cols-2" : "grid-cols-3"
+          } ${
+            desktopScroll ? "max-h-[64vh] overflow-y-auto pr-2" : ""
+          }`}>
+          {filteredItems.map((item) => (
+            <ClothingCard key={item._id} item={item} />
+          ))}
+        </div>
+      </>
+      ) : (
+      <div
+        className={`grid gap-8 ${
+          columns === 2 ? "grid-cols-2" : "grid-cols-2 lg:grid-cols-3"
+        } ${
+          mobileScroll
+            ? "max-lg:max-h-[60vh] max-lg:overflow-y-auto"
+            : ""
+        } ${
+          desktopScroll
+            ? "lg:max-h-[64vh] lg:overflow-y-auto"
+            : ""
+          }`}>
         {filteredItems.map((item) => (
           <ClothingCard key={item._id} item={item} />
         ))}
       </div>
+    )}
     </>
   );
 };
