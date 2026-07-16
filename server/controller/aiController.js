@@ -1,5 +1,5 @@
-const ai = require('../services/gemini')
 const ClothingItem = require('../models/ClothingItem')
+const groq = require('../services/ai')
 
 async function handleAiSuggestion(req, res) {
     try {
@@ -67,14 +67,15 @@ async function handleAiSuggestion(req, res) {
             Example format if bottom and shoes are missing:
             {"bottom": "wb003", "shoes": "ws001"}
             `
-        console.log("API KEY:", process.env.GEMINI_API_KEY?.slice(0, 10))
-        const response = await ai.models.generateContent({
-            model: "gemini-3.5-flash",
-            contents: prompt,
+        const response = await groq.chat.completions.create({
+            model: "llama-3.1-8b-instant",
+            messages: [
+                { role: "user", content: prompt }
+            ],
+            temperature: 0.7,
         })
 
-        const rawText = response.text
-
+        const rawText = response.choices[0].message.content.trim()
         let suggestions
         try {
             suggestions = JSON.parse(rawText)
@@ -99,7 +100,13 @@ async function handleAiSuggestion(req, res) {
                 message: "AI Stylist is temporarily busy. Please try again in a few seconds."
             })
         }
-        return res.status(500).json({ message: err.message })
+        console.log(err.message)
+
+    return res.status(500).json({
+        message: err.message,
+        status: err.status,
+        response: err.response?.data
+    });
     }
 }
 
