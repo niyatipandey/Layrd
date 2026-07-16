@@ -9,7 +9,7 @@ const ClothingPanel = ({columns,scroll,showAllCategory, searchQuery = ""}) => {
 
   const categories = [
     { label: "All", value: "all" },
-    { label: "Top", value: "top" },
+    { label: "Tops", value: "top" },
     { label: "Bottoms", value: "bottom" },
     { label: "Shoes", value: "shoes" },
     { label: "Accessories", value: "accessory" },
