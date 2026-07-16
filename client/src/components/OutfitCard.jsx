@@ -5,15 +5,15 @@ export const OutfitCard = ({outfit,onDelete }) => {
 
     const slots = [
         outfit.slots.top,
-        outfit.slots.bottom,
         outfit.slots.shoes,
+        outfit.slots.bottom,
         outfit.slots.accessory
     ].filter(Boolean)
 
   return (
       <div className='bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden hover:scale-103'>
         <div className='grid grid-cols-2 gap-[2px] bg-[#F0EBE3]'>
-            {[outfit.slots.top, outfit.slots.bottom, outfit.slots.shoes, outfit.slots.accessory].map((item, i) => (
+            {[outfit.slots.top, outfit.slots.accessory, outfit.slots.bottom, outfit.slots.shoes].map((item, i) => (
                 <div key={i} className='bg-[#FAFAF8] aspect-square flex items-center justify-center p-3'>
                     {item ? (
                     <img src={item.imageUrl} alt={item.name}
