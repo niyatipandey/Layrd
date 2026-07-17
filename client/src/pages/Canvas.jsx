@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 import Navbar from '../components/Navbar'
 import ClothingPanel from '../components/ClothingPanel'
 import CanvasSlot from '../components/CanvasSlot'
-import { DndContext, PointerSensor,useSensors } from '@dnd-kit/core'
+import { DndContext, PointerSensor,useSensor,useSensors,TouchSensor } from '@dnd-kit/core'
 import { BASE_URL, getAuthHeader } from '../utils/api'
 import { Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -131,6 +131,12 @@ const Canvas = () => {
     useSensor(PointerSensor ,{
       activationConstraint: {
         distance: 8,
+      }
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay:150,
+        tolerance:8,
       }
     })
   )

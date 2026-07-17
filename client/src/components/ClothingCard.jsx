@@ -23,7 +23,7 @@ const ClothingCard = ({ item }) => {
       style={style}
       {...listeners}
       {...attributes}
-      className="group bg-white rounded-2xl shadow-sm cursor-grab active:cursor-grabbing overflow-hidden transition-shadow duration-300 hover:shadow-lg"
+      className="group bg-white rounded-2xl shadow-sm cursor-grab active:cursor-grabbing overflow-hidden transition-shadow duration-300 hover:shadow-lg touch-none"
     >
       <div className="relative w-full aspect-square bg-[#F8F5F0] overflow-hidden">
         <img
