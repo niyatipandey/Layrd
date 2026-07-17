@@ -15,12 +15,10 @@ async function handleAiSuggestion(req, res) {
             return res.status(400).json({ message: "All slots are already filled." })
         }
 
-        // Fetch available items only for missing categories
         const availableItems = await ClothingItem.find({
             category: { $in: missingSlots }
         })
 
-        // Group by category for the prompt
         const grouped = {}
         missingSlots.forEach(slot => {
             grouped[slot] = availableItems
@@ -81,8 +79,6 @@ async function handleAiSuggestion(req, res) {
         } catch (err) {
             return res.status(500).json({ message: "AI returned an unexpected response. Please try again." })
         }
-
-        // Fetch full item objects using custom id
         const recommendedItems = {}
         for (const [slot, itemId] of Object.entries(suggestions)) {
             if (itemId && missingSlots.includes(slot)) {
