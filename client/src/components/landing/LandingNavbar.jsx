@@ -10,38 +10,97 @@ const LandingNavbar = ({C,serif,sans}) => {
   ];
 
   return (
-    <nav style={{
-      position: "sticky", top: 0, zIndex: 50,
-      background: C.bg,
-      borderBottom: `1px solid ${C.border}`,
-    }}>
-      <div style={{
-        maxWidth: 1200, margin: "0 auto",
-        padding: "0 32px", height: 60,
-        display: "flex", alignItems: "center", gap: 40,
-      }}>
-        <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 700, color: C.text, letterSpacing: "0.05em" }}>
-          LAYRD
-        </span>
-        <div style={{ display: "flex", gap: 36, flex: 1, justifyContent: "center" }}>
-          {navLinks.map(l => (
-            <a key={l.name} href={l.id} style={{ fontFamily: sans, fontSize: 14, color: C.mid, textDecoration: "none" }}
-               onMouseEnter={e => e.target.style.color = C.text}
-               onMouseLeave={e => e.target.style.color = C.mid}>
-              {l.name}
-            </a>
-          ))}
+    <nav className="sticky top-0 z-50 border-b border-[#D8D2C8] bg-[#F8F5F0]">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+
+        {/* ================= Mobile ================= */}
+        <div className="md:hidden py-4">
+          {/* Top Row */}
+          <div className="flex items-center justify-between gap-4">
+            <h1
+              className="text-lg font-bold tracking-wider text-[#2E2621] whitespace-nowrap"
+              style={{ fontFamily: "Cormorant Garamond" }}
+            >
+              LAYRD
+            </h1>
+
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <Link
+                to="/login"
+                className="text-xs text-[#2E2621] hover:text-black whitespace-nowrap"
+              >
+                Log in
+              </Link>
+
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Link
+                  to="/register"
+                  className="rounded-md bg-[#2E2621] px-3 py-2 text-xs font-medium text-white whitespace-nowrap"
+                >
+                  Get Started
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Bottom Row */}
+          <div className="mt-4 flex justify-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.id}
+                className="text-sm text-[#6F7B82] transition-colors hover:text-[#2E2621]"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <a href="/login" style={{ fontFamily: sans, fontSize: 14, color: C.text, textDecoration: "none" }}>Log in</a>
-          <motion.a href="/register" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-            style={{
-              background: C.primary, color: "#fff",
-              fontFamily: sans, fontSize: 14, fontWeight: 500,
-              padding: "9px 22px", borderRadius: 8, textDecoration: "none",
-            }}>
-            Get Started
-          </motion.a>
+
+        {/* ================= Desktop ================= */}
+        <div className="hidden h-[72px] items-center gap-10 md:flex">
+          <h1
+            className="text-xl font-bold tracking-wider text-[#2E2621]"
+            style={{ fontFamily: "Cormorant Garamond" }}
+          >
+            LAYRD
+          </h1>
+
+          <div className="flex flex-1 justify-center gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.id}
+                className="text-sm text-[#6F7B82] transition-colors hover:text-[#2E2621]"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link
+              to="/login"
+              className="text-sm text-[#2E2621] transition-colors hover:text-black"
+            >
+              Log in
+            </Link>
+
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Link
+                to="/register"
+                className="rounded-lg bg-[#2E2621] px-6 py-2.5 text-sm font-medium text-white"
+              >
+                Get Started
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </div>
     </nav>

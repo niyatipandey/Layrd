@@ -1,95 +1,43 @@
 import React from 'react'
 import ctaImage from "../../assets/style_image.png";
 import FadeUp from './FadeUp';
+import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 
 const CTASplit = ({C,serif,sans}) => {
   return (
-    <section
-      style={{
-        background: C.bg,
-        padding: 0,
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          minHeight: "380px",
-        }}
-      >
+    <section className="bg-[#F8F5F0]">
+      <div className="grid min-h-[380px] grid-cols-1 lg:grid-cols-2">
         <div
+          className="min-h-[300px] lg:min-h-[380px] bg-cover bg-left bg-no-repeat"
           style={{
             backgroundImage: `url(${ctaImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "left center",
-            backgroundRepeat: "no-repeat",
-            minHeight: "380px",
-          }}
-        />
-
-        <div
-          style={{
-            background: "#EDE8E0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "60px 64px",
-          }}
-        >
+          }}/>
+        <div className="flex items-center justify-center bg-[#EDE8E0] px-6 py-14 md:px-12 lg:px-16">
           <FadeUp>
             <div>
               <h2
-                style={{
-                  fontFamily: serif,
-                  fontWeight: 700,
-                  fontSize: "clamp(30px, 3vw, 46px)",
-                  color: C.text,
-                  lineHeight: 1.15,
-                  marginBottom: 20,
-                }}
-              >
+                className="mb-5 text-4xl font-bold leading-tight text-[#2E2621] md:text-5xl"
+                style={{ fontFamily: "Cormorant Garamond" }}>
                 Ready to Elevate
                 <br />
                 Your Style?
               </h2>
-
-              <p
-                style={{
-                  fontFamily: sans,
-                  color: C.mid,
-                  lineHeight: 1.7,
-                  fontSize: 15,
-                  maxWidth: 340,
-                  marginBottom: 32,
-                }}
-              >
+              <p className="mb-8 max-w-sm text-[15px] leading-7 text-[#6F7B82]">
                 Join Layrd and let AI help you create
                 outfits that truly represent your style.
               </p>
 
-              <motion.a
-                href="/register"
+              <motion.div
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  background: C.primary,
-                  color: "#fff",
-                  fontFamily: sans,
-                  fontWeight: 500,
-                  fontSize: 14,
-                  padding: "14px 30px",
-                  borderRadius: 8,
-                  textDecoration: "none",
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-                }}
-              >
-                Get Started for Free →
-              </motion.a>
+                className="inline-block">
+                <Link
+                  to="/register"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2E2621] px-8 py-3.5 text-sm font-medium text-white shadow-lg transition-colors hover:bg-[#243C47]">
+                  Get Started for Free →
+                </Link>
+              </motion.div>
             </div>
           </FadeUp>
         </div>

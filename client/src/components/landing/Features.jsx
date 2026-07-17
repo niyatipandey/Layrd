@@ -35,8 +35,8 @@ const Features = ({C,serif,sans}) =>{
     ];
 
   return (
-    <section id="features" style={{ background: C.bg, padding: "90px 0" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
+    <section id="features" className="bg-[#F8F5F0] py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeUp>
           <p
             style={{
@@ -56,103 +56,47 @@ const Features = ({C,serif,sans}) =>{
 
         <FadeUp delay={0.07}>
           <h2
-            style={{
-              fontFamily: serif,
-              fontWeight: 700,
-              fontSize: "clamp(32px, 3.5vw, 46px)",
-              color: C.text,
-              textAlign: "center",
-              marginBottom: 50,
-            }}
-          >
-            Your Personal
-            <br />
-            Styling Studio
-          </h2>
+                className="mb-12 text-center text-4xl font-bold text-[#2E2621] md:text-5xl"
+                style={{ fontFamily: "Cormorant Garamond" }}
+                >
+                Your Personal
+                <br />
+                Styling Studio
+            </h2>
         </FadeUp>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 20,
-          }}
-        >
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {FEATURES.map((f, i) => (
             <FadeUp key={f.title} delay={i * 0.08}>
               <motion.div
-                whileHover={{
-                  y: -6,
-                  boxShadow: "0 18px 40px rgba(28,26,24,0.10)",
-                }}
-                transition={{ duration: 0.25 }}
-                style={{
-                  background: C.card,
-                  border: `1px solid ${C.border}`,
-                  borderRadius: 18,
-                  overflow: "hidden",
-                  cursor: "default",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    height: 200,
-                  }}
+                    whileHover={{
+                        y: -6,
+                        boxShadow: "0 18px 40px rgba(28,26,24,0.10)",
+                    }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden rounded-[18px] border border-[#D8D2C8] bg-[#FDFBF8] cursor-default"
                 >
-                  <img
-                    src={f.image}
-                    alt={f.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                    }}
-                  />
+                <div className="relative h-40 md:h-52">
+                    <img
+                        src={f.image}
+                        alt={f.title}
+                        className="h-full w-full object-cover"
+                    />
 
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 16,
-                      left: 16,
-                      width: 58,
-                      height: 58,
-                      borderRadius: "50%",
-                      background: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 24,
-                      boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-                    }}
-                  >
-                    {f.icon}
-                  </div>
+                    <div className="absolute bottom-4 left-4 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white text-xl shadow-lg">
+                        {f.icon}
+                    </div>
                 </div>
-                <div style={{ padding: "24px" }}>
-                  <h3
-                    style={{
-                      fontFamily: serif,
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: C.text,
-                      marginBottom: 10,
-                    }}
-                  >
-                    {f.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontFamily: sans,
-                      fontSize: 14,
-                      lineHeight: 1.7,
-                      color: C.mid,
-                    }}
-                  >
-                    {f.body}
-                  </p>
+                <div className="p-5 md:p-6">
+                    <h3
+                        className="mb-2 text-lg font-bold text-[#2E2621] md:text-[22px]"
+                        style={{ fontFamily: "Cormorant Garamond" }}
+                        >
+                        {f.title}
+                    </h3>
+                    <p className="text-sm leading-7 text-[#6F7B82]">
+                        {f.body}
+                    </p>
                 </div>
               </motion.div>
             </FadeUp>
