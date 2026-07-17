@@ -144,7 +144,7 @@ const Canvas = () => {
   return (
     <>
       <Navbar />
-      <main className='max-w-7xl mx-auto px-8 py-10'>
+      <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10'>
         <div className='mb-8'>
           <h1 className='font-serif text-5xl text-[#2E2621]'>Outfit Builder</h1>
           <p className='text-[#8A8072] mt-2'>Create your next look from your wardrobe</p>
@@ -153,7 +153,7 @@ const Canvas = () => {
           <div className='flex flex-col lg:flex-row gap-10 items-start'>
             <div className='w-full lg:w-[35%]'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe Selection</h3>
-              <ClothingPanel columns={2} mobileScroll={true} desktopScroll={true} showAllCategory={false} mobileCarousel/>
+              <ClothingPanel columns={2} mobileScroll={true} desktopScroll={true} showAllCategory={false} />
             </div>
             <div className='w-full lg:flex-1 min-w-0'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-6">Canvas</h3>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/api";
 import ClothingCard from "./ClothingCard";
 
-const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,mobileCarousel = false, searchQuery = ""}) => {
+const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,searchQuery = ""}) => {
   const [activeCategory, setActiveCategory] = useState("top");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,7 @@ const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,mo
 
   return (
     <>
-      <div className="flex gap-3 mb-8 overflow-x-auto whitespace-nowrap pb-2 justify-between">
+      <div className="flex gap-3 mb-8 overflow-y-auto whitespace-nowrap pb-2 justify-between">
         {visibleCategories.map((category) => (
           <button
             key={category.value}
@@ -67,30 +67,8 @@ const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,mo
           </button>
         ))}
       </div>
-
-      {mobileCarousel ? (
-      <>
-        <div className="flex gap-3 overflow-x-auto lg:hidden pb-2">
-          {filteredItems.map((item) => (
-            <div key={item._id} className="w-28 sm:w-32 flex-shrink-0">
-              <ClothingCard item={item} />
-            </div>
-          ))}
-        </div>
-        <div
-          className={`hidden lg:grid gap-8 ${
-            columns === 2 ? "grid-cols-2" : "grid-cols-3"
-          } ${
-            desktopScroll ? "max-h-[64vh] overflow-y-auto pr-2" : ""
-          }`}>
-          {filteredItems.map((item) => (
-            <ClothingCard key={item._id} item={item} />
-          ))}
-        </div>
-      </>
-      ) : (
       <div
-        className={`grid gap-8 ${
+        className={`grid gap-3 ${
           columns === 2 ? "grid-cols-2" : "grid-cols-2 lg:grid-cols-3"
         } ${
           mobileScroll
@@ -102,10 +80,13 @@ const ClothingPanel = ({columns,desktopScroll="",showAllCategory,mobileScroll,mo
             : ""
           }`}>
         {filteredItems.map((item) => (
-          <ClothingCard key={item._id} item={item} />
+          <div
+            key={item._id}
+            className="w-28 sm:w-32 lg:max-w-none lg:w-full mx-auto">
+            <ClothingCard item={item} />
+          </div>
         ))}
       </div>
-    )}
     </>
   );
 };
