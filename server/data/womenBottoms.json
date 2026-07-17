@@ -50,31 +50,6 @@
     "archived": false
   },
   {
-    "id": "wb003",
-    "name": "Black Ruched Faux Leather Mini Skirt",
-    "gender": "women",
-    "category": "bottom",
-    "subCategory": "mini skirt",
-    "style": ["party", "edgy", "streetwear"],
-    "occasion": ["party", "night out", "date"],
-    "season": ["autumn", "winter"],
-    "color": "black",
-    "material": "faux leather",
-    "fit": "bodycon",
-    "layering": false,
-    "formality": 3,
-    "warmth": 2,
-    "tags": [
-      "leather",
-      "ruched",
-      "mini skirt",
-      "edgy"
-    ],
-    "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598564/black-ruched-faux-leather-mini-skirt_ay2gpx.webp",
-    "favorite": false,
-    "archived": false
-  },
-  {
     "id": "wb004",
     "name": "Cream Linen Wide-Leg Pants",
     "gender": "women",
@@ -96,6 +71,31 @@
       "relaxed"
     ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598594/cream-linen-wide-leg-pants_rwvpyc.jpg",
+    "favorite": false,
+    "archived": false
+  },
+  {
+    "id": "wb003",
+    "name": "Black Ruched Faux Leather Mini Skirt",
+    "gender": "women",
+    "category": "bottom",
+    "subCategory": "mini skirt",
+    "style": ["party", "edgy", "streetwear"],
+    "occasion": ["party", "night out", "date"],
+    "season": ["autumn", "winter"],
+    "color": "black",
+    "material": "faux leather",
+    "fit": "bodycon",
+    "layering": false,
+    "formality": 3,
+    "warmth": 2,
+    "tags": [
+      "leather",
+      "ruched",
+      "mini skirt",
+      "edgy"
+    ],
+    "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598564/black-ruched-faux-leather-mini-skirt_ay2gpx.webp",
     "favorite": false,
     "archived": false
   },
