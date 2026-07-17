@@ -14,7 +14,7 @@ export const OutfitCard = ({outfit,onDelete }) => {
       <div className='bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden hover:scale-103'>
         <div className='grid grid-cols-2 gap-[2px] bg-[#F0EBE3]'>
             {[outfit.slots.top, outfit.slots.accessory, outfit.slots.bottom, outfit.slots.shoes].map((item, i) => (
-                <div key={i} className='bg-[#FAFAF8] aspect-square flex items-center justify-center p-3'>
+                <div key={i} className='bg-[#F5F1EA] aspect-square flex items-center justify-center p-3'>
                     {item ? (
                     <img src={item.imageUrl} alt={item.name}
                         className='w-full h-full object-contain' />
