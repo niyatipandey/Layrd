@@ -29,7 +29,7 @@ export const OutfitCard = ({outfit,onDelete }) => {
             {new Date(outfit.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </p>
             <button onClick={onDelete}
-            className='text-xs text-[#8A8072] hover:text-red-500 transition-colors'>
+            className='text-xs text-[#8A8072] hover:text-red-500 transition-colors cursor-pointer'>
             Delete
             </button>
         </div>

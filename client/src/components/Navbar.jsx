@@ -24,7 +24,11 @@ const Navbar = () => {
                 <NavLink
                     to="/library"
                     className={({ isActive }) =>
-                    isActive ? "font-bold text-[#4B4138]" : "text-[#2E2621] hover:text-[#E7C76A]"
+                    `relative ${
+                        isActive
+                        ? "font-bold text-[#4B4138]"
+                        : "text-[#2E2621] hover:text-[#E7C76A]"
+                    }`
                     }>
                     {({ isActive }) => (
                         <>
@@ -39,7 +43,11 @@ const Navbar = () => {
                 <NavLink
                     to="/canvas"
                     className={({ isActive }) =>
-                    isActive ? "font-bold text-[#4B4138]" : "text-[#2E2621] hover:text-[#E7C76A]"
+                    `relative ${
+                        isActive
+                        ? "font-bold text-[#4B4138]"
+                        : "text-[#2E2621] hover:text-[#E7C76A]"
+                    }`
                     }>
                     {({ isActive }) => (
                         <>
@@ -54,7 +62,11 @@ const Navbar = () => {
                 <NavLink
                     to="/wardrobe"
                     className={({ isActive }) =>
-                    isActive ? "font-bold text-[#4B4138]" : "text-[#2E2621] hover:text-[#E7C76A]"
+                    `relative ${
+                        isActive
+                        ? "font-bold text-[#4B4138]"
+                        : "text-[#2E2621] hover:text-[#E7C76A]"
+                    }`
                     }>
                     {({ isActive }) => (
                         <>
