@@ -5,7 +5,6 @@ async function handleAiSuggestion(req, res) {
     try {
         const { top, bottom, shoes, accessory } = req.body
 
-        // Identify which slots need suggestions
         const missingSlots = []
         if (!top) missingSlots.push("top")
         if (!bottom) missingSlots.push("bottom")

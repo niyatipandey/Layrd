@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 import Navbar from '../components/Navbar'
 import ClothingPanel from '../components/ClothingPanel'
 import CanvasSlot from '../components/CanvasSlot'
-import { DndContext } from '@dnd-kit/core'
+import { DndContext, PointerSensor,useSensors } from '@dnd-kit/core'
 import { BASE_URL, getAuthHeader } from '../utils/api'
 import { Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -23,7 +23,7 @@ const Canvas = () => {
   bottom: "bottom",
   shoes: "shoes",
   accessory: "accessory",
-};
+  };
 
   function handleDragEnd(event){
     const {active,over} = event
@@ -127,6 +127,14 @@ const Canvas = () => {
     }
   }
 
+  const sensors = useSensors(
+    useSensor(PointerSensor ,{
+      activationConstraint: {
+        distance: 8,
+      }
+    })
+  )
+
   return (
     <>
       <Navbar />
@@ -135,7 +143,7 @@ const Canvas = () => {
           <h1 className='font-serif text-5xl text-[#2E2621]'>Outfit Builder</h1>
           <p className='text-[#8A8072] mt-2'>Create your next look from your wardrobe</p>
         </div>
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
           <div className='flex flex-col lg:flex-row gap-10 items-start'>
             <div className='w-full lg:w-[35%]'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe Selection</h3>
