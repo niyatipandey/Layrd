@@ -47,7 +47,6 @@ const Canvas = () => {
     }));
   };
 
-
   async function saveOutfit() {
     try{
       if (!selectedOutfit.top && !selectedOutfit.bottom && !selectedOutfit.shoes && !selectedOutfit.accessory) {

@@ -1,6 +1,6 @@
 # Layrd 👗✨
 
-> **Build your wardrobe. Style your look.**
+> **Digitize your wardrobe. Build outfits visually. Get AI styling suggestions.**
 
 Layrd is a full-stack MERN wardrobe and outfit planning application that
 helps users visually create outfits from a curated digital wardrobe.
@@ -8,18 +8,11 @@ Users can browse clothing, drag pieces onto an interactive outfit
 canvas, save complete looks, and receive AI-powered outfit
 recommendations generated from **their own wardrobe** using Groq.
 
-![Status](https://img.shields.io/badge/status-v1%20complete-success?style=flat-square)
-![Stack](https://img.shields.io/badge/stack-MERN-blue?style=flat-square)
-![AI](https://img.shields.io/badge/AI-Groq-purple?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
-
 ------------------------------------------------------------------------
 
 # 🚀 Live Demo
 
-**Frontend:** *[Click Here](https://layrd-eight.vercel.app)*
-
-**Backend:** *[Click Here](https://layrd-backend.onrender.com)*
+**Live Link:** *[Click Here](https://layrd-eight.vercel.app)*
 
 ------------------------------------------------------------------------
 
@@ -62,12 +55,13 @@ recommendations generated from **their own wardrobe** using Groq.
 
 ## 🎨 Outfit Builder
 
--   Drag & Drop interface
--   Four dedicated outfit slots
--   Category validation
--   Replace/remove items
--   Clear outfit
--   Save complete outfits
+- Drag & Drop on desktop
+- Tap-to-add interaction on mobile
+- Four dedicated outfit slots
+- Category validation
+- Replace/remove items
+- Clear outfit
+- Save complete outfits
 
 ## 🧥 My Wardrobe
 
@@ -84,6 +78,12 @@ recommendations generated from **their own wardrobe** using Groq.
 -   Considers style, occasion, season and color compatibility
 -   Automatically fills missing outfit slots
 
+## 📱 Responsive Experience
+
+- Responsive UI across desktop and mobile
+- Drag-and-drop on desktop
+- Tap-to-add interactions on mobile
+
 ------------------------------------------------------------------------
 
 # 🛠 Tech Stack
@@ -96,6 +96,14 @@ recommendations generated from **their own wardrobe** using Groq.
   Authentication   JWT, bcryptjs
   AI               Groq API
   Drag & Drop      @dnd-kit/core
+
+## ☁️ Deployment
+
+Frontend: Vercel
+
+Backend: Render
+
+Database: MongoDB Atlas
 
 ------------------------------------------------------------------------
 
@@ -229,6 +237,59 @@ Express REST API
 
 ------------------------------------------------------------------------
 
+# 💻 Local Setup
+
+## Prerequisites
+
+- Node.js
+- MongoDB Atlas account
+- Groq API Key
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/niyatipandey/Layrd.git
+cd Layrd
+```
+
+### Backend Setup
+
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file inside the `server` folder:
+
+```env
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+GROQ_API_KEY=your_groq_api_key
+PORT=3000
+```
+
+Start the backend:
+
+```bash
+npm start
+```
+
+### Frontend Setup
+
+```bash
+cd ../client
+npm install
+npm run dev
+```
+
+Open your browser at:
+
+```text
+http://localhost:5173
+```
+
+------------------------------------------------------------------------
+
 # ⚙ Technical Challenges
 
 -   Designing structured prompts for consistent JSON responses.
@@ -258,6 +319,17 @@ Layrd/
     ├── services/
     └── seed.js
 ```
+------------------------------------------------------------------------ 
+
+# 🚀 Future Improvements
+
+- Upload personal wardrobe images
+- AI-generated outfit explanations
+- Favorite outfits
+- Occasion-based outfit collections
+- Dark mode
+
+------------------------------------------------------------------------
 
 # 📖 What I Learned
 
