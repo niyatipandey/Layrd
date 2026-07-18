@@ -1,7 +1,7 @@
 import React from "react";
 import {useDraggable } from "@dnd-kit/core";
 
-const ClothingCard = ({ item }) => {
+const ClothingCard = ({ item ,onSelect }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: item._id,
     data: {
@@ -21,7 +21,6 @@ const ClothingCard = ({ item }) => {
 
   const handleClick = () => {
     if (!isMobile) return;
-
     onSelect(item);
   };
 
@@ -29,6 +28,7 @@ const ClothingCard = ({ item }) => {
     <div
       ref={setNodeRef}
       style={style}
+      onClick={handleClick}
       {...listeners}
       {...attributes}
       className="group w-28 sm:w-32 lg:w-full mx-auto bg-white rounded-2xl shadow-sm cursor-grab active:cursor-grabbing overflow-hidden transition-shadow duration-300 hover:shadow-lg"

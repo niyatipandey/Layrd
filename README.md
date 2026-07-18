@@ -283,7 +283,5 @@ missing pieces using only items already available in the wardrobe.
 
 The goal is to make outfit planning simple, visual, and personal.
 
-
-::: {align="center"}
 **Built with ❤️ using React • Node.js • MongoDB • Groq API**
-:::
+
