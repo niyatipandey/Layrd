@@ -6,7 +6,6 @@ import { DndContext, PointerSensor,useSensor,useSensors} from '@dnd-kit/core'
 import { BASE_URL, getAuthHeader } from '../utils/api'
 import { Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { useState } from 'react'
 
 const Canvas = () => {
 
