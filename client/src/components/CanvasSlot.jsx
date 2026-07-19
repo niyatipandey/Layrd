@@ -1,15 +1,26 @@
-import React from "react";
+CanvasSlot.displayName = "CanvasSlot";
+import React , {forwardRef} from "react";
 import { useDroppable } from "@dnd-kit/core";
 
-const CanvasSlot = ({ icon, title, selectedItem ,onRemove}) => {
+const CanvasSlot = forwardRef(
+({ icon, title, selectedItem, onRemove }, ref) => {
   const { setNodeRef, isOver } = useDroppable({
     id: title.toLowerCase(),
   });
 
   return (
     <div
-      ref={setNodeRef}
-      className={`relative h-40 rounded-3xl border-2 border-dashed flex flex-col items-center justify-center
+      ref={(node) => {
+        setNodeRef(node);
+        if (ref) {
+          if (typeof ref === "function") {
+            ref(node);
+          } else {
+            ref.current = node;
+          }
+        }
+      }}
+      className={`relative h-60 sm:h-44  rounded-3xl border-2 border-dashed flex flex-col items-center justify-center overflow-hidden
       ${
         isOver
           ? "bg-green-100 border-green-400"
@@ -27,9 +38,9 @@ const CanvasSlot = ({ icon, title, selectedItem ,onRemove}) => {
           <img
             src={selectedItem.imageUrl}
             alt={selectedItem.name}
-            className="h-26 object-contain"
+            className="max-h-[75%] w-auto object-contain"
           />
-          <p className="mt-2 font-medium">{selectedItem.name}</p>
+          <p className="text-sm font-medium text-center line-clamp-2">{selectedItem.name}</p>
         </>
       ) : (
         <>
@@ -40,6 +51,6 @@ const CanvasSlot = ({ icon, title, selectedItem ,onRemove}) => {
       )}
     </div>
   );
-};
+});
 
 export default CanvasSlot;

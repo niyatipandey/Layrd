@@ -39,6 +39,7 @@ const Hero = ({C,serif,sans}) => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: .5, delay: .05 }}
+                style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }}
                 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.13em] text-[#B88A2A]"
             >
                 AI Stylist. Your Look, Perfected.
@@ -59,7 +60,8 @@ const Hero = ({C,serif,sans}) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: .6, delay: .19 }}
-                className="mb-6 font-serif text-4xl italic font-bold leading-tight text-[#B88A2A] sm:text-5xl lg:text-6xl"
+                style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+                className="mb-6 font-serif text-4xl italic font-bold leading-tight text-[#B88A2A] shadow:xl sm:text-5xl lg:text-6xl"
             >
                 Style Your Look.
             </motion.h2>

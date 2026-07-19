@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState ,useRef } from 'react'
 import Navbar from '../components/Navbar'
 import ClothingPanel from '../components/ClothingPanel'
 import CanvasSlot from '../components/CanvasSlot'
@@ -8,6 +8,11 @@ import { Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 const Canvas = () => {
+
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
+  const shoesRef = useRef(null);
+  const accessoryRef = useRef(null);
 
   const [selectedOutfit, setSelectedOutfit] = useState({
     top:null,
@@ -40,11 +45,29 @@ const Canvas = () => {
     }))
   }
 
+  const refs = {
+    top: topRef,
+    bottom: bottomRef,
+    shoes: shoesRef,
+    accessory: accessoryRef,
+  }
+
   const handleMobileSelect = (item) => {
+    const slot = categoryMap[item.category];
+
     setSelectedOutfit(prev => ({
       ...prev,
-      [categoryMap[item.category]]: item
+      [slot]: item
     }));
+
+    if(window.innerWidth < 768){
+      setTimeout(()=>{
+        refs[slot]?.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })
+      },100)
+    }
   };
 
   async function saveOutfit() {
@@ -141,6 +164,7 @@ const Canvas = () => {
     }),
   )
 
+
   return (
     <>
       <Navbar />
@@ -161,6 +185,7 @@ const Canvas = () => {
                 <div className='grid grid-cols-2 gap-4'>
                   <CanvasSlot
                       icon="👚"
+                      ref={topRef}
                       title="Top"
                       selectedItem = {selectedOutfit.top}
                       onRemove={()=>(
@@ -172,6 +197,7 @@ const Canvas = () => {
                   />
                   <CanvasSlot
                       icon="👜"
+                      ref={accessoryRef}
                       title="Accessory"
                       selectedItem = {selectedOutfit.accessory}
                       onRemove={()=>(
@@ -183,6 +209,7 @@ const Canvas = () => {
                   />
                 <CanvasSlot
                     icon="👖"
+                    ref={bottomRef}
                     title="Bottom"
                     selectedItem = {selectedOutfit.bottom}
                     onRemove={()=>(
@@ -195,6 +222,7 @@ const Canvas = () => {
 
                 <CanvasSlot
                     icon="👟"
+                    ref={shoesRef}
                     title="Shoes"
                     selectedItem = {selectedOutfit.shoes}
                     onRemove={()=>(
