@@ -20,10 +20,14 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: false,
 }));
+
 app.use(express.static('public'))
 
 app.use(express.urlencoded({extended :false}));
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok' })
+})
 
 app.use('/auth',authRoute)
 app.use('/items',itemsRoute)
