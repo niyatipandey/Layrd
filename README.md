@@ -2,11 +2,7 @@
 
 > **Digitize your wardrobe. Build outfits visually. Get AI styling suggestions.**
 
-Layrd is a full-stack MERN wardrobe and outfit planning application that
-helps users visually create outfits from a curated digital wardrobe.
-Users can browse clothing, drag pieces onto an interactive outfit
-canvas, save complete looks, and receive AI-powered outfit
-recommendations generated from **their own wardrobe** using Groq.
+Layrd is a full-stack MERN styling tool that helps users figure out if an outfit combination actually works — before buying anything. Pick a silhouette, build the look on an interactive canvas, and let the AI complete missing pieces using only items available in the catalogue.
 
 ------------------------------------------------------------------------
 
@@ -345,15 +341,13 @@ Layrd/
 
 # 💡 Why Layrd?
 
-Most wardrobe applications focus on organizing clothes.
+Most outfit tools either store clothes or generate random looks.
 
-**Layrd focuses on creating outfits.**
+**Layrd does something different — it lets you test the outfit that's already in your head.**
 
-Instead of simply storing clothing, users can visually build outfits on
-an interactive canvas while an AI stylist intelligently completes
-missing pieces using only items already available in the wardrobe.
+You know the silhouette you want. You don't know what completes it. Layrd gives you a visual canvas to build combinations by style type and lets an AI stylist fill the gaps — constrained strictly to what's in the catalogue, never inventing items that don't exist.
 
-The goal is to make outfit planning simple, visual, and personal.
+The goal is to make the gap between imagining an outfit and validating it as small as possible.
 
 **Built with ❤️ using React • Node.js • MongoDB • Groq API**
 
