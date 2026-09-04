@@ -44,10 +44,24 @@ const Canvas = () => {
     if (categoryMap[draggedItem.category] !== over.id) {
       return;
     }
-    setSelectedOutfit((prev)=>({
-      ...prev,
-      [over.id]: draggedItem,
-    }))
+    
+    if (isRecommendationApplied) {
+    setSelectedOutfit({
+        top: null,
+        bottom: null,
+        shoes: null,
+        accessory: null,
+        [over.id]: draggedItem
+    });
+    setRecommendations([]);
+    setIsRecommendationApplied(false);
+
+    }else{
+      setSelectedOutfit((prev)=>({
+        ...prev,
+        [over.id]: draggedItem,
+      }))
+    }
   }
 
   const refs = {
@@ -68,6 +82,8 @@ const Canvas = () => {
         accessory: null,
         [slot]: item
     });
+
+    setRecommendations([]);
 
     setIsRecommendationApplied(false);
 
@@ -298,6 +314,8 @@ const Canvas = () => {
                   shoes:null,
                   accessory:null
                 })
+                setRecommendations([]);
+                setIsRecommendationApplied(false);
               }}>Clear</button>
             </div>
           </div>
