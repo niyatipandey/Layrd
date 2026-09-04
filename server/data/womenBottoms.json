@@ -5,146 +5,317 @@
     "gender": "women",
     "category": "bottom",
     "subCategory": "denim skirt",
-    "style": ["casual", "streetwear", "minimal"],
-    "occasion": ["casual", "college", "travel", "daily"],
+
+    "style": ["casual", "streetwear", "trendy"],
+    "styleScores": {
+      "casual": 5,
+      "streetwear": 4,
+      "trendy": 4
+    },
+
+    "occasion": ["casual", "college", "travel", "daily", "brunch"],
+    "occasionScores": {
+      "casual": 5,
+      "college": 5,
+      "travel": 4,
+      "daily": 5,
+      "brunch": 4
+    },
+
     "season": ["spring", "summer"],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
+
     "color": "blue",
     "material": "denim",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 2,
     "warmth": 1,
+
     "tags": [
       "denim",
       "mini skirt",
       "casual",
-      "everyday"
+      "everyday",
+      "summer"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598598/blue-denim-mini-skirt_zt7jan.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wb002",
     "name": "Black Wide-Leg Trousers",
     "gender": "women",
     "category": "bottom",
     "subCategory": "trousers",
-    "style": ["minimal", "formal", "smart casual"],
-    "occasion": ["office", "formal", "business", "daily"],
+
+    "style": ["minimal", "formal", "smart casual", "classic", "business"],
+    "styleScores": {
+      "minimal": 5,
+      "formal": 5,
+      "smart casual": 5,
+      "classic": 5,
+      "business": 5
+    },
+
+    "occasion": ["office", "formal", "business", "daily", "date"],
+    "occasionScores": {
+      "office": 5,
+      "formal": 5,
+      "business": 5,
+      "daily": 3,
+      "date": 4
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "black",
     "material": "polyester blend",
-    "fit": "wide-leg",
+    "materialScore": 4,
+
+    "fit": "wideLeg",
+    "fitScore": 5,
+
     "layering": false,
     "formality": 5,
     "warmth": 2,
+
     "tags": [
       "wide-leg",
       "office",
       "tailored",
-      "classic"
+      "classic",
+      "trousers"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598594/black-wide-leg-trousers_hcmdhm.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wb004",
     "name": "Cream Linen Wide-Leg Pants",
     "gender": "women",
     "category": "bottom",
     "subCategory": "linen pants",
-    "style": ["minimal", "resort", "smart casual"],
-    "occasion": ["vacation", "brunch", "casual", "office"],
+
+    "style": ["minimal", "resort", "smart casual", "casual"],
+    "styleScores": {
+      "minimal": 5,
+      "resort": 5,
+      "smart casual": 4,
+      "casual": 5
+    },
+
+    "occasion": ["vacation", "brunch", "casual", "office", "travel"],
+    "occasionScores": {
+      "vacation": 5,
+      "brunch": 5,
+      "casual": 5,
+      "office": 3,
+      "travel": 5
+    },
+
     "season": ["spring", "summer"],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
+
     "color": "cream",
     "material": "linen",
-    "fit": "wide-leg",
+    "materialScore": 5,
+
+    "fit": "wideLeg",
+    "fitScore": 5,
+
     "layering": false,
     "formality": 3,
     "warmth": 1,
+
     "tags": [
       "linen",
       "breathable",
       "summer",
-      "relaxed"
+      "relaxed",
+      "wide-leg"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598594/cream-linen-wide-leg-pants_rwvpyc.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wb003",
     "name": "Black Ruched Faux Leather Mini Skirt",
     "gender": "women",
     "category": "bottom",
     "subCategory": "mini skirt",
-    "style": ["party", "edgy", "streetwear"],
+
+    "style": ["party", "edgy", "streetwear", "trendy"],
+    "styleScores": {
+      "party": 5,
+      "edgy": 5,
+      "streetwear": 4,
+      "trendy": 5
+    },
+
     "occasion": ["party", "night out", "date"],
-    "season": ["autumn", "winter"],
+    "occasionScores": {
+      "party": 5,
+      "night out": 5,
+      "date": 5
+    },
+
+    "season": ["autumn", "winter", "spring"],
+    "seasonScores": {
+      "autumn": 5,
+      "winter": 4,
+      "spring": 3
+    },
+
     "color": "black",
     "material": "faux leather",
+    "materialScore": 5,
+
     "fit": "bodycon",
+    "fitScore": 5,
+
     "layering": false,
     "formality": 3,
     "warmth": 2,
+
     "tags": [
       "leather",
       "ruched",
       "mini skirt",
-      "edgy"
+      "edgy",
+      "party"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598564/black-ruched-faux-leather-mini-skirt_ay2gpx.webp",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wb005",
     "name": "Black Wide-Leg Cargo Pants",
     "gender": "women",
     "category": "bottom",
     "subCategory": "cargo pants",
-    "style": ["streetwear", "utility", "casual"],
-    "occasion": ["college", "travel", "casual"],
+
+    "style": ["streetwear", "utility", "casual", "trendy"],
+    "styleScores": {
+      "streetwear": 5,
+      "utility": 5,
+      "casual": 5,
+      "trendy": 4
+    },
+
+    "occasion": ["college", "travel", "casual", "daily"],
+    "occasionScores": {
+      "college": 5,
+      "travel": 5,
+      "casual": 5,
+      "daily": 4
+    },
+
     "season": ["autumn", "winter", "spring"],
+    "seasonScores": {
+      "autumn": 5,
+      "winter": 4,
+      "spring": 5
+    },
+
     "color": "black",
     "material": "cotton",
-    "fit": "wide-leg",
+    "materialScore": 5,
+
+    "fit": "wideLeg",
+    "fitScore": 5,
+
     "layering": false,
     "formality": 2,
     "warmth": 2,
+
     "tags": [
       "cargo",
       "utility",
       "streetwear",
-      "oversized"
+      "oversized",
+      "casual"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598570/black-wide-leg-cargo-pants_b061jm.webp",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wb006",
     "name": "Blue Wide-Leg Jeans",
     "gender": "women",
     "category": "bottom",
     "subCategory": "jeans",
-    "style": ["casual", "minimal", "streetwear"],
-    "occasion": ["college", "casual", "travel", "daily"],
+
+    "style": ["casual", "minimal", "streetwear", "classic", "trendy"],
+    "styleScores": {
+      "casual": 5,
+      "minimal": 4,
+      "streetwear": 4,
+      "classic": 4,
+      "trendy": 4
+    },
+
+    "occasion": ["college", "casual", "travel", "daily", "brunch"],
+    "occasionScores": {
+      "college": 5,
+      "casual": 5,
+      "travel": 4,
+      "daily": 5,
+      "brunch": 4
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "blue",
     "material": "denim",
-    "fit": "wide-leg",
+    "materialScore": 5,
+
+    "fit": "wideLeg",
+    "fitScore": 5,
+
     "layering": false,
     "formality": 2,
     "warmth": 2,
+
     "tags": [
       "denim",
       "wide-leg",
       "jeans",
-      "everyday"
+      "everyday",
+      "versatile"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598586/blue-wide-leg-jeans_mqkqvd.png",
     "favorite": false,
     "archived": false

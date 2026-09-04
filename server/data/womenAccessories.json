@@ -5,196 +5,396 @@
     "gender": "women",
     "category": "accessory",
     "subCategory": "belt",
+
     "style": ["minimal", "classic", "formal"],
+    "styleScores": {
+      "minimal": 5,
+      "classic": 5,
+      "formal": 5
+    },
+
     "occasion": ["office", "casual", "formal", "daily"],
+    "occasionScores": {
+      "office": 5,
+      "casual": 4,
+      "formal": 5,
+      "daily": 4
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "black",
     "material": "leather",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 1,
+
     "tags": [
       "belt",
       "leather",
       "timeless",
       "wardrobe essential"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598567/black-leather-belt_dka2c2.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa002",
     "name": "Brown Leather Belt",
     "gender": "women",
     "category": "accessory",
     "subCategory": "belt",
+
     "style": ["classic", "minimal", "smart casual"],
+    "styleScores": {
+      "classic": 5,
+      "minimal": 5,
+      "smart casual": 5
+    },
+
     "occasion": ["office", "casual", "daily", "travel"],
+    "occasionScores": {
+      "office": 5,
+      "casual": 5,
+      "daily": 5,
+      "travel": 4
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "brown",
     "material": "leather",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 1,
+
     "tags": [
       "belt",
       "brown",
       "classic",
       "versatile"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598570/brown-leather-belt_cxeqj6.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa003",
     "name": "Gold Clover Bracelet",
     "gender": "women",
     "category": "accessory",
     "subCategory": "bracelet",
+
     "style": ["elegant", "minimal", "luxury"],
+    "styleScores": {
+      "elegant": 5,
+      "minimal": 4,
+      "luxury": 5
+    },
+
     "occasion": ["party", "date", "formal", "festive"],
+    "occasionScores": {
+      "party": 5,
+      "date": 5,
+      "formal": 5,
+      "festive": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "gold",
     "material": "gold-plated metal",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 5,
     "warmth": 1,
+
     "tags": [
       "bracelet",
       "gold",
       "jewelry",
       "elegant"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598626/gold-clover-bracelet_jleruq.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa004",
     "name": "Beige Shoulder Handbag",
     "gender": "women",
     "category": "accessory",
     "subCategory": "handbag",
+
     "style": ["minimal", "casual", "elegant"],
+    "styleScores": {
+      "minimal": 5,
+      "casual": 5,
+      "elegant": 5
+    },
+
     "occasion": ["casual", "office", "shopping", "daily"],
+    "occasionScores": {
+      "casual": 5,
+      "office": 5,
+      "shopping": 5,
+      "daily": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "beige",
     "material": "faux leather",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 3,
     "warmth": 1,
+
     "tags": [
       "handbag",
       "shoulder bag",
       "minimal",
       "neutral"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598560/beige-shoulder-handbag_jfjmvx.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa005",
     "name": "Black Canvas Tote Bag",
     "gender": "women",
     "category": "accessory",
     "subCategory": "tote bag",
-    "style": ["casual", "minimal", "everyday"],
+
+    "style": ["casual", "minimal"],
+    "styleScores": {
+      "casual": 5,
+      "minimal": 5
+    },
+
     "occasion": ["college", "shopping", "travel", "daily"],
+    "occasionScores": {
+      "college": 5,
+      "shopping": 5,
+      "travel": 5,
+      "daily": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "black",
     "material": "canvas",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 2,
     "warmth": 1,
+
     "tags": [
       "tote",
       "canvas",
       "daily",
       "practical"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598547/black-canvas-tote-bag_e6tmic.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa006",
     "name": "Black Cat-Eye Sunglasses",
     "gender": "women",
     "category": "accessory",
     "subCategory": "sunglasses",
+
     "style": ["minimal", "fashion", "modern"],
-    "occasion": ["travel", "vacation", "casual", "summer"],
+    "styleScores": {
+      "minimal": 5,
+      "fashion": 5,
+      "modern": 5
+    },
+
+    "occasion": ["travel", "vacation", "casual", "brunch"],
+    "occasionScores": {
+      "travel": 5,
+      "vacation": 5,
+      "casual": 5,
+      "brunch": 4
+    },
+
     "season": ["spring", "summer"],
+    "seasonScores": {
+      "spring": 4,
+      "summer": 5
+    },
+
     "color": "black",
     "material": "acetate",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 2,
     "warmth": 1,
+
     "tags": [
       "sunglasses",
       "cat-eye",
       "UV protection",
       "fashion"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598547/black-cat-eye-sunglasses_ijvix6.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa007",
     "name": "Gold Layered Necklace",
     "gender": "women",
     "category": "accessory",
     "subCategory": "necklace",
-    "style": ["minimal", "elegant", "modern"],
+
+    "style": ["minimal", "elegant", "modern", "trendy"],
+    "styleScores": {
+      "minimal": 5,
+      "elegant": 5,
+      "modern": 5,
+      "trendy": 4
+    },
+
     "occasion": ["party", "date", "casual", "festive"],
+    "occasionScores": {
+      "party": 5,
+      "date": 5,
+      "casual": 4,
+      "festive": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "gold",
     "material": "gold-plated metal",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 1,
+
     "tags": [
       "necklace",
       "layered",
       "gold",
       "jewelry"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598554/gold-layered-necklace_nowckw.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "wa008",
     "name": "Gold Hoop Earrings",
     "gender": "women",
     "category": "accessory",
     "subCategory": "earrings",
+
     "style": ["minimal", "classic", "elegant"],
+    "styleScores": {
+      "minimal": 5,
+      "classic": 5,
+      "elegant": 5
+    },
+
     "occasion": ["casual", "office", "party", "date"],
+    "occasionScores": {
+      "casual": 5,
+      "office": 5,
+      "party": 5,
+      "date": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "gold",
     "material": "gold-plated metal",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 1,
+
     "tags": [
       "hoops",
       "earrings",
       "gold",
       "classic"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598550/gold-hoop-earrings_gclxj9.jpg",
     "favorite": false,
     "archived": false

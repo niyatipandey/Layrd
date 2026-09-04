@@ -1,10 +1,23 @@
 const ClothingItem = require('../models/ClothingItem')
 const groq = require('../services/ai')
+const { scoreOutfit } = require('../services/outfitScorer');
 
 async function handleAiSuggestion(req, res) {
     try {
         const { top, bottom, shoes, accessory } = req.body
 
+        const selectedItems = {
+            top,
+            bottom,
+            shoes,
+            accessory
+        }
+        console.log("Selected items:", {
+            top: top?.id,
+            bottom: bottom?.id,
+            shoes: shoes?.id,
+            accessory: accessory?.id
+        })
         const missingSlots = []
         if (!top) missingSlots.push("top")
         if (!bottom) missingSlots.push("bottom")
@@ -41,53 +54,205 @@ async function handleAiSuggestion(req, res) {
             accessory ? `Accessory: ${accessory.name}, Color: ${accessory.color}` : null,
         ].filter(Boolean).join('\n')
 
+        const selectedReference = top || bottom || shoes || accessory;
+
+        const styleOccasionPairs = [];
+
+        if (selectedReference) {
+            for (const style of selectedReference.style || []) {
+                for (const occasion of selectedReference.occasion || []) {
+                    styleOccasionPairs.push({
+                        style,
+                        occasion
+                    });
+                }
+            }
+        }
+
+        console.log("Style × Occasion combinations:", styleOccasionPairs);
+
         const prompt = `
-            You are an expert fashion stylist specializing in women's editorial fashion.
+            You are a fashion outfit generator.
 
-            The user has already selected these items for their outfit:
-            ${filledDescription || "Nothing selected yet — suggest a complete starting look."}
+            SELECTED ITEMS:
+            ${filledDescription}
 
-            Your task is to suggest ONE item for each of these missing slots: ${missingSlots.join(', ')}
+            INTENT COMBINATIONS:
+            ${JSON.stringify(styleOccasionPairs)}
 
-            Guidelines:
-            - Match colors that complement the existing items
-            - Match the formality level (casual with casual, formal with formal)
-            - Consider the season and occasion of existing items
-            - Prioritize harmony and cohesion over individual statement pieces
+            For EACH intent combination, create EXACTLY ONE complete outfit.
 
-            Available wardrobe items by category:
-            ${JSON.stringify(grouped, null, 2)}
+            Rules:
+            1. Keep all selected items unchanged.
+            2. Fill only the missing slots.
+            3. Use ONLY item IDs from the wardrobe below.
+            4. The outfit must match the specified style AND occasion.
+            5. Do not mix or invent styles or occasions.
+            6. Do not invent item IDs.
+            7. Do not calculate scores.
+            8. Do not explain anything.
+            9. Return ONLY valid JSON.
+            10. Return exactly one recommendation for each intent combination.
 
-            Return ONLY a valid JSON object with the missing slot names as keys and the item's "id" field as the value.
-            Do not include filled slots. Do not include markdown. Do not include explanations.
+            Each Style × Occasion combination must produce a meaningfully different outfit from the other combinations.
 
-            Example format if bottom and shoes are missing:
-            {"bottom": "wb003", "shoes": "ws001"}
+            Do not reuse the same bottom + shoes + accessory combination for multiple
+            Style × Occasion combinations unless the available wardrobe makes it unavoidable.
+
+            The differences must be intentional:
+            - feminine → prioritize feminine-looking pieces
+            - minimal → prioritize simple, clean pieces
+            - trendy → prioritize trend-forward pieces
+            - vacation → prioritize vacation-appropriate pieces
+            - party → prioritize party-appropriate pieces
+            - date → prioritize date-appropriate pieces
+
+            WARDROBE:
+            ${JSON.stringify(grouped)}
+
+            OUTPUT:
+            {
+            "recommendations": [
+                {
+                "bottom": "item_id",
+                "shoes": "item_id",
+                "accessory": "item_id",
+                "style": "exact_style",
+                "occasion": "exact_occasion"
+                }
+            ]
+            }
             `
         const response = await groq.chat.completions.create({
-            model: "llama-3.1-8b-instant",
-            messages: [
-                { role: "user", content: prompt }
-            ],
-            temperature: 0.7,
-        })
+            model: "qwen/qwen3.8-27b",
 
-        const rawText = response.choices[0].message.content.trim()
+            messages: [
+                {
+                    role: "user",
+                    content: prompt
+                }
+            ],
+
+            temperature: 0.7,
+
+            reasoning_effort: "none",
+
+            max_completion_tokens: 4096,
+
+            response_format: {
+                type: "json_object"
+            }
+        });
+        console.log("FULL AI RESPONSE:", JSON.stringify(response, null, 2));
+
+        const rawText = response.choices?.[0]?.message?.content?.trim();
+
+        console.log("RAW TEXT:", JSON.stringify(rawText));
         let suggestions
         try {
             suggestions = JSON.parse(rawText)
         } catch (err) {
             return res.status(500).json({ message: "AI returned an unexpected response. Please try again." })
         }
-        const recommendedItems = {}
-        for (const [slot, itemId] of Object.entries(suggestions)) {
-            if (itemId && missingSlots.includes(slot)) {
-                const item = await ClothingItem.findOne({ id: itemId })
-                if (item) recommendedItems[slot] = item
+
+        const validPairs = new Set(
+            styleOccasionPairs.map(
+                pair => `${pair.style}::${pair.occasion}`
+            )
+        );
+
+        const recommendations = [];
+        const usedCombinations = new Set();
+
+        for (const outfit of suggestions.recommendations) {
+
+            const combinationKey = [
+                outfit.bottom,
+                outfit.shoes,
+                outfit.accessory
+            ].join("::");
+
+            if (usedCombinations.has(combinationKey)) {
+                console.log("Skipping duplicate outfit:", combinationKey);
+                continue;
+            }
+
+            usedCombinations.add(combinationKey);
+            
+            const pairKey = `${outfit.style}::${outfit.occasion}`;
+
+            if (!validPairs.has(pairKey)) {
+                console.log(
+                    "Skipping invalid Style × Occasion:",
+                    outfit.style,
+                    outfit.occasion
+                );
+                continue;
+            }
+
+            const completeOutfit = {};
+
+            for (const slot of ["top", "bottom", "shoes", "accessory"]) {
+                if (selectedItems[slot]) {
+                    completeOutfit[slot] = selectedItems[slot];
+                }
+            }
+
+            for (const slot of missingSlots) {
+
+                const itemId = outfit[slot];
+
+                if (!itemId) {
+                    continue;
+                }
+
+                const item = await ClothingItem.findOne({ id: itemId });
+
+                if (!item) {
+                    continue;
+                }
+
+                completeOutfit[slot] = item;
+            }
+
+            const isComplete =
+                completeOutfit.top &&
+                completeOutfit.bottom &&
+                completeOutfit.shoes &&
+                completeOutfit.accessory;
+
+            if (isComplete) {
+                const recommendedOutfit = {
+                    style: outfit.style,
+                    occasion: outfit.occasion,
+                    outfit: completeOutfit
+                };
+                const score = scoreOutfit(recommendedOutfit);
+
+                recommendations.push({
+                    ...recommendedOutfit,
+                    score
+                });
             }
         }
 
-        return res.status(200).json(recommendedItems)
+        recommendations.sort((a, b) => b.score - a.score);
+        console.log(
+            "Final recommendations:",
+            recommendations.map(rec => ({
+                style: rec.style,
+                occasion: rec.occasion,
+                top: rec.outfit.top?.id,
+                bottom: rec.outfit.bottom?.id,
+                shoes: rec.outfit.shoes?.id,
+                accessory: rec.outfit.accessory?.id
+            }))
+        )
+
+        const topRecommendations = recommendations.slice(0, 3);
+
+
+        return res.status(200).json(topRecommendations)
 
     } catch (err) {
         if (err.status === 429) {

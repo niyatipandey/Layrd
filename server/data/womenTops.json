@@ -5,16 +5,57 @@
     "gender": "women",
     "category": "top",
     "subCategory": "halter top",
-    "style": ["minimal", "party"],
-    "occasion": ["vacation", "party", "casual"],
-    "season": ["summer"],
+    "style": [
+      "feminine",
+      "trendy",
+      "resort",
+      "party",
+      "minimal"
+    ],
+    "styleScores": {
+      "feminine": 5,
+      "trendy": 5,
+      "resort": 5,
+      "party": 4,
+      "minimal": 3
+    },
+    "occasion": [
+      "vacation",
+      "date",
+      "night out",
+      "party",
+      "brunch"
+    ],
+    "occasionScores": {
+      "vacation": 5,
+      "date": 5,
+      "night out": 5,
+      "party": 4,
+      "brunch": 3
+    },
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "seasonScores": {
+      "spring": 4,
+      "summer": 5
+    },
     "color": "brown",
     "material": "rib knit",
+    "materialScore": 4,
     "fit": "slim",
+    "fitScore": 4,
     "layering": false,
     "formality": 2,
     "warmth": 1,
-    "tags": ["halter", "summer", "minimal"],
+    "tags": [
+      "halter",
+      "crop top",
+      "summer",
+      "minimal",
+      "night out"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598573/chocolate-ribbed-halter-crop-top_mnfh9k.jpg",
     "favorite": false,
     "archived": false
@@ -25,16 +66,55 @@
     "gender": "women",
     "category": "top",
     "subCategory": "blouse",
-    "style": ["feminine", "romantic"],
-    "occasion": ["casual", "date", "brunch"],
-    "season": ["spring", "summer"],
+    "style": [
+      "feminine",
+      "romantic",
+      "resort",
+      "trendy",
+      "casual"
+    ],
+    "styleScores": {
+      "feminine": 5,
+      "romantic": 5,
+      "resort": 4,
+      "trendy": 4,
+      "casual": 3
+    },
+    "occasion": [
+      "vacation",
+      "date",
+      "brunch",
+      "casual"
+    ],
+    "occasionScores": {
+      "vacation": 5,
+      "date": 5,
+      "brunch": 5,
+      "casual": 3
+    },
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
     "color": "butter yellow",
     "material": "textured cotton",
+    "materialScore": 4,
     "fit": "regular",
+    "fitScore": 4,
     "layering": false,
     "formality": 3,
     "warmth": 2,
-    "tags": ["tie front", "long sleeves", "cute"],
+    "tags": [
+      "tie front",
+      "blouse",
+      "cute",
+      "romantic",
+      "spring"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598570/butter-yellow-tie-front-blouse_daik6t.jpg",
     "favorite": false,
     "archived": false
@@ -45,16 +125,67 @@
     "gender": "women",
     "category": "top",
     "subCategory": "blouse",
-    "style": ["elegant", "formal"],
-    "occasion": ["office", "date", "party"],
-    "season": ["all-season"],
+    "style": [
+      "elegant",
+      "feminine",
+      "formal",
+      "party",
+      "classic",
+      "vintage"
+    ],
+    "styleScores": {
+      "elegant": 5,
+      "feminine": 5,
+      "formal": 4,
+      "party": 4,
+      "classic": 4,
+      "vintage": 3
+    },
+    "occasion": [
+      "date",
+      "party",
+      "formal",
+      "night out",
+      "wedding",
+      "office"
+    ],
+    "occasionScores": {
+      "date": 5,
+      "party": 5,
+      "formal": 4,
+      "night out": 4,
+      "wedding": 4,
+      "office": 3
+    },
+    "season": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter",
+      "all-season"
+    ],
+    "seasonScores": {
+      "spring": 4,
+      "summer": 3,
+      "autumn": 5,
+      "winter": 4,
+      "all-season": 5
+    },
     "color": "burgundy",
     "material": "satin",
+    "materialScore": 5,
     "fit": "regular",
+    "fitScore": 4,
     "layering": false,
     "formality": 5,
     "warmth": 2,
-    "tags": ["wrap", "satin", "dressy"],
+    "tags": [
+      "wrap",
+      "satin",
+      "dressy",
+      "elegant",
+      "party"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598568/burgundy-satin-wrap-blouse_bc1og7.jpg",
     "favorite": false,
     "archived": false
@@ -65,16 +196,55 @@
     "gender": "women",
     "category": "top",
     "subCategory": "crop top",
-    "style": ["party", "trendy"],
-    "occasion": ["party", "date"],
-    "season": ["spring", "summer"],
+    "style": [
+      "trendy",
+      "romantic",
+      "feminine",
+      "party",
+      "elegant"
+    ],
+    "styleScores": {
+      "trendy": 5,
+      "romantic": 5,
+      "feminine": 5,
+      "party": 5,
+      "elegant": 3
+    },
+    "occasion": [
+      "party",
+      "date",
+      "night out",
+      "brunch"
+    ],
+    "occasionScores": {
+      "party": 5,
+      "date": 5,
+      "night out": 5,
+      "brunch": 3
+    },
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
     "color": "dusty rose",
     "material": "mesh",
+    "materialScore": 4,
     "fit": "slim",
+    "fitScore": 4,
     "layering": false,
     "formality": 3,
     "warmth": 1,
-    "tags": ["corset", "mesh", "off shoulder"],
+    "tags": [
+      "corset",
+      "mesh",
+      "off shoulder",
+      "party",
+      "date night"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598617/dusty-rose-mesh-corset-crop-top_fbyohs.png",
     "favorite": false,
     "archived": false
@@ -85,16 +255,63 @@
     "gender": "women",
     "category": "top",
     "subCategory": "shirt",
-    "style": ["business", "classic"],
-    "occasion": ["office", "formal"],
-    "season": ["all-season"],
+    "style": [
+      "business",
+      "formal",
+      "smart casual",
+      "classic",
+      "minimal"
+    ],
+    "styleScores": {
+      "business": 5,
+      "formal": 5,
+      "smart casual": 5,
+      "classic": 4,
+      "minimal": 3
+    },
+    "occasion": [
+      "office",
+      "business",
+      "formal",
+      "date",
+      "brunch"
+    ],
+    "occasionScores": {
+      "office": 5,
+      "business": 5,
+      "formal": 4,
+      "date": 3,
+      "brunch": 2
+    },
+    "season": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter",
+      "all-season"
+    ],
+    "seasonScores": {
+      "spring": 4,
+      "summer": 3,
+      "autumn": 5,
+      "winter": 4,
+      "all-season": 5
+    },
     "color": "brown",
     "material": "cotton blend",
+    "materialScore": 4,
     "fit": "slim",
+    "fitScore": 5,
     "layering": true,
     "formality": 5,
     "warmth": 2,
-    "tags": ["pinstripe", "office", "tailored"],
+    "tags": [
+      "pinstripe",
+      "office",
+      "tailored",
+      "business",
+      "classic"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598567/brown-pinstripe-fitted-shirt_aovi2d.png",
     "favorite": false,
     "archived": false
@@ -105,16 +322,57 @@
     "gender": "women",
     "category": "top",
     "subCategory": "cami",
-    "style": ["minimal", "elegant"],
-    "occasion": ["date", "party", "office"],
-    "season": ["spring", "summer"],
+    "style": [
+      "elegant",
+      "feminine",
+      "party",
+      "romantic",
+      "minimal"
+    ],
+    "styleScores": {
+      "elegant": 5,
+      "feminine": 5,
+      "party": 4,
+      "romantic": 4,
+      "minimal": 4
+    },
+    "occasion": [
+      "date",
+      "party",
+      "night out",
+      "wedding",
+      "formal"
+    ],
+    "occasionScores": {
+      "date": 5,
+      "party": 4,
+      "night out": 5,
+      "wedding": 3,
+      "formal": 3
+    },
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
     "color": "champagne",
     "material": "satin",
+    "materialScore": 5,
     "fit": "regular",
+    "fitScore": 4,
     "layering": true,
     "formality": 4,
     "warmth": 1,
-    "tags": ["cami", "satin", "dressy"],
+    "tags": [
+      "cami",
+      "satin",
+      "dressy",
+      "elegant",
+      "party"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598588/champagne-satin-cami-top_nctnzj.png",
     "favorite": false,
     "archived": false
@@ -125,16 +383,65 @@
     "gender": "women",
     "category": "top",
     "subCategory": "shirt",
-    "style": ["minimal", "classic"],
-    "occasion": ["office", "casual", "travel"],
-    "season": ["all-season"],
+    "style": [
+      "minimal",
+      "classic",
+      "casual",
+      "smart casual",
+      "formal"
+    ],
+    "styleScores": {
+      "minimal": 5,
+      "classic": 5,
+      "casual": 4,
+      "smart casual": 5,
+      "formal": 3
+    },
+    "occasion": [
+      "office",
+      "college",
+      "travel",
+      "daily",
+      "casual",
+      "business"
+    ],
+    "occasionScores": {
+      "office": 4,
+      "college": 5,
+      "travel": 5,
+      "daily": 5,
+      "casual": 5,
+      "business": 3
+    },
+    "season": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter",
+      "all-season"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 4,
+      "autumn": 5,
+      "winter": 4,
+      "all-season": 5
+    },
     "color": "white",
     "material": "cotton",
+    "materialScore": 5,
     "fit": "oversized",
+    "fitScore": 4,
     "layering": true,
     "formality": 4,
     "warmth": 2,
-    "tags": ["oversized", "white shirt", "wardrobe essential"],
+    "tags": [
+      "oversized",
+      "white shirt",
+      "wardrobe essential",
+      "classic",
+      "versatile"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598621/white-oversized-button-up-shirt_rykdvr.png",
     "favorite": false,
     "archived": false
@@ -145,16 +452,57 @@
     "gender": "women",
     "category": "top",
     "subCategory": "t-shirt",
-    "style": ["streetwear", "casual", "vintage"],
-    "occasion": ["casual", "college", "travel"],
-    "season": ["spring", "summer", "autumn"],
+    "style": [
+      "streetwear",
+      "casual",
+      "vintage",
+      "trendy",
+      "edgy"
+    ],
+    "styleScores": {
+      "streetwear": 5,
+      "casual": 5,
+      "vintage": 5,
+      "trendy": 4,
+      "edgy": 3
+    },
+    "occasion": [
+      "daily",
+      "college",
+      "travel",
+      "casual"
+    ],
+    "occasionScores": {
+      "daily": 5,
+      "college": 5,
+      "travel": 4,
+      "casual": 5
+    },
+    "season": [
+      "spring",
+      "summer",
+      "autumn"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5,
+      "autumn": 5
+    },
     "color": "brown",
     "material": "cotton",
+    "materialScore": 5,
     "fit": "oversized",
+    "fitScore": 5,
     "layering": false,
     "formality": 1,
     "warmth": 2,
-    "tags": ["graphic tee", "oversized", "vintage"],
+    "tags": [
+      "graphic tee",
+      "oversized",
+      "vintage",
+      "streetwear",
+      "casual"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598616/vintage-brown-graphic-oversized-tee_cs9okc.png",
     "favorite": false,
     "archived": false
@@ -165,16 +513,57 @@
     "gender": "women",
     "category": "top",
     "subCategory": "sweater",
-    "style": ["minimal", "classic"],
-    "occasion": ["casual", "office", "travel"],
-    "season": ["autumn", "winter"],
+    "style": [
+      "minimal",
+      "classic",
+      "casual",
+      "smart casual"
+    ],
+    "styleScores": {
+      "minimal": 5,
+      "classic": 4,
+      "casual": 4,
+      "smart casual": 4
+    },
+    "occasion": [
+      "travel",
+      "casual",
+      "daily",
+      "college",
+      "office"
+    ],
+    "occasionScores": {
+      "travel": 5,
+      "casual": 4,
+      "daily": 4,
+      "college": 3,
+      "office": 3
+    },
+    "season": [
+      "autumn",
+      "winter",
+      "spring"
+    ],
+    "seasonScores": {
+      "spring": 3,
+      "autumn": 5,
+      "winter": 5
+    },
     "color": "cream",
     "material": "knit",
+    "materialScore": 5,
     "fit": "regular",
+    "fitScore": 4,
     "layering": true,
     "formality": 3,
     "warmth": 5,
-    "tags": ["knit", "winter", "minimal"],
+    "tags": [
+      "knit",
+      "winter",
+      "minimal",
+      "cozy",
+      "classic"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598589/cream-ribbed-knit-sweater_mtuevo.jpg",
     "favorite": false,
     "archived": false
@@ -185,16 +574,55 @@
     "gender": "women",
     "category": "top",
     "subCategory": "crop top",
-    "style": ["minimal", "casual"],
-    "occasion": ["college", "casual", "gym"],
-    "season": ["spring", "summer"],
+    "style": [
+      "minimal",
+      "casual",
+      "streetwear",
+      "trendy"
+    ],
+    "styleScores": {
+      "minimal": 5,
+      "casual": 5,
+      "streetwear": 4,
+      "trendy": 3
+    },
+    "occasion": [
+      "college",
+      "daily",
+      "gym",
+      "casual",
+      "travel"
+    ],
+    "occasionScores": {
+      "college": 5,
+      "daily": 5,
+      "gym": 4,
+      "casual": 5,
+      "travel": 4
+    },
+    "season": [
+      "spring",
+      "summer"
+    ],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
     "color": "black",
     "material": "cotton",
+    "materialScore": 5,
     "fit": "regular",
+    "fitScore": 4,
     "layering": false,
     "formality": 1,
     "warmth": 1,
-    "tags": ["basic", "cropped", "everyday"],
+    "tags": [
+      "basic",
+      "cropped",
+      "everyday",
+      "minimal",
+      "casual"
+    ],
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598626/black-basic-crop-tee_lsme4h.png",
     "favorite": false,
     "archived": false

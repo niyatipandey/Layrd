@@ -13,6 +13,9 @@ const Canvas = () => {
   const bottomRef = useRef(null);
   const shoesRef = useRef(null);
   const accessoryRef = useRef(null);
+  const canvasRef = useRef(null);
+  const recommendationsRef = useRef(null);
+  const [isRecommendationApplied, setIsRecommendationApplied] = useState(false);
   const [highlightSlot, setHighlightSlot] = useState(null)
 
   const [selectedOutfit, setSelectedOutfit] = useState({
@@ -23,6 +26,7 @@ const Canvas = () => {
   })
 
   const [isStyling, setIsStyling] = useState(false)
+  const [recommendations, setRecommendations] = useState([]);
 
   const categoryMap = {
   top: "top",
@@ -56,10 +60,25 @@ const Canvas = () => {
   const handleMobileSelect = (item) => {
     const slot = categoryMap[item.category];
 
-    setSelectedOutfit(prev => ({
-      ...prev,
-      [slot]: item
-    }));
+    if (isRecommendationApplied) {
+    setSelectedOutfit({
+        top: null,
+        bottom: null,
+        shoes: null,
+        accessory: null,
+        [slot]: item
+    });
+
+    setIsRecommendationApplied(false);
+
+    }else{
+      setSelectedOutfit(prev => ({
+        ...prev,
+        [slot]: item
+      }));
+    }
+
+    
 
     if(window.innerWidth < 768){
       setTimeout(()=>{
@@ -130,10 +149,10 @@ const Canvas = () => {
       }
 
       const outfitData = {
-          top: selectedOutfit.top?.name,
-          bottom: selectedOutfit.bottom?.name,
-          shoes: selectedOutfit.shoes?.name,
-          accessory: selectedOutfit.accessory?.name,
+          top: selectedOutfit.top || null,
+          bottom: selectedOutfit.bottom || null,
+          shoes: selectedOutfit.shoes || null,
+          accessory: selectedOutfit.accessory || null,
       }
 
       const response = await fetch(`${BASE_URL}/ai/suggest`,{
@@ -147,14 +166,15 @@ const Canvas = () => {
         setIsStyling(false);
         return;
       }
-      setSelectedOutfit((prev)=>({
-        ...prev,
-        top: prev.top || data.top || null,
-        bottom: prev.bottom || data.bottom || null,
-        shoes: prev.shoes || data.shoes || null,
-        accessory: prev.accessory || data.accessory || null
-      }))
-      toast.success("✨ Outfit completed by AI!");
+      console.log("AI Recommendations:", data);
+      setRecommendations(data);
+      setTimeout(()=>{
+        recommendationsRef.current?.scrollIntoView({
+          behavious: "smooth",
+          block: "start"
+        });
+      },100);
+      toast.success(`Your Top✨ ${data.length} outfit ideas created!`);
       setIsStyling(false)
     }catch(err){
       console.log(err);
@@ -185,7 +205,9 @@ const Canvas = () => {
               <h3 className="text-xl font-semibold text-[#2E2621] mb-5">Wardrobe Selection</h3>
               <ClothingPanel columns={2} mobileScroll={true} desktopScroll={true} showAllCategory={false} onSelect={handleMobileSelect} />
             </div>
-            <div className='w-full lg:flex-1 min-w-0'>
+            <div 
+            ref={canvasRef}
+            className='w-full lg:flex-1 min-w-0'>
               <h3 className="text-xl font-semibold text-[#2E2621] mb-6">Canvas</h3>
               <div className="space-y-6">
                 <div className='grid grid-cols-2 gap-4'>
@@ -280,6 +302,121 @@ const Canvas = () => {
             </div>
           </div>
           </DndContext>
+          {recommendations.length > 0 && (
+  <div className="mt-12" ref={recommendationsRef}>
+    <h2 className="font-serif text-3xl text-[#2E2621] mb-2">
+      AI Outfit Ideas
+    </h2>
+
+    <p className="text-[#8A8072] mb-6">
+      Based on the style and occasion of your selected item
+    </p>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {recommendations.map((recommendation, index) => (
+        <div
+          key={index}
+          className="bg-white border border-[#DDD5C7] rounded-2xl p-5 shadow-sm"
+        >
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold px-2 py-1 rounded-full bg-[#E7C76A]">
+                  #{index + 1} {index === 0 ? "BEST MATCH" : "OUTFIT IDEA"}
+                </span>
+              </div>
+
+              <h3 className="text-xl font-semibold text-[#2E2621] mt-3 capitalize">
+                {recommendation.style}
+              </h3>
+
+              <p className="text-[#8A8072] capitalize">
+                Perfect for {recommendation.occasion}
+              </p>
+            </div>
+
+            <div className="text-right">
+            <div className="text-xl font-bold text-[#2E2621]">
+              {recommendation.score}
+              <span className="text-sm font-normal text-[#8A8072]">/100</span>
+            </div>
+
+            <p className="text-[10px] uppercase tracking-wider text-[#8A8072]">
+              Match Score
+            </p>
+          </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mt-4">
+  
+            <div>
+              <img
+                src={recommendation.outfit.top.imageUrl}
+                alt={recommendation.outfit.top.name}
+                className="w-full h-40 object-contain rounded-xl"
+              />
+              <p className="text-sm mt-2">
+                {recommendation.outfit.top.name}
+              </p>
+            </div>
+
+            <div>
+              <img
+                src={recommendation.outfit.bottom.imageUrl}
+                alt={recommendation.outfit.bottom.name}
+                className="w-full h-40 object-contain rounded-xl"
+              />
+              <p className="text-sm mt-2">
+                {recommendation.outfit.bottom.name}
+              </p>
+            </div>
+
+            <div>
+              <img
+                src={recommendation.outfit.shoes.imageUrl}
+                alt={recommendation.outfit.shoes.name}
+                className="w-full h-40 object-contain rounded-xl"
+              />
+              <p className="text-sm mt-2">
+                {recommendation.outfit.shoes.name}
+              </p>
+            </div>
+
+            <div>
+              <img
+                src={recommendation.outfit.accessory.imageUrl}
+                alt={recommendation.outfit.accessory.name}
+                className="w-full h-40 object-contain rounded-xl"
+              />
+              <p className="text-sm mt-2">
+                {recommendation.outfit.accessory.name}
+              </p>
+            </div>
+
+          </div>
+            <button
+              onClick={() => {
+                setSelectedOutfit(recommendation.outfit);
+                setIsRecommendationApplied(true);
+
+                setTimeout(() => {
+                  canvasRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                  });
+                }, 100);
+
+                toast.success("Outfit loaded on canvas!");
+              }}
+              className="mt-5 w-full py-2 rounded-xl bg-[#2E2621] text-white hover:scale-[1.02] transition-all"
+            >
+              Try This Outfit
+            </button>
+          </div>
+      ))}
+    </div>
+  </div>
+)}
       </main>
     </>
   )

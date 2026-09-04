@@ -5,146 +5,319 @@
     "gender": "women",
     "category": "shoes",
     "subCategory": "heels",
-    "style": ["formal", "minimal", "classic"],
-    "occasion": ["office", "party", "date", "formal"],
+
+    "style": ["formal", "classic", "elegant", "minimal"],
+    "styleScores": {
+      "formal": 5,
+      "classic": 5,
+      "elegant": 5,
+      "minimal": 3
+    },
+
+    "occasion": ["office", "party", "date", "formal", "wedding"],
+    "occasionScores": {
+      "office": 4,
+      "party": 5,
+      "date": 5,
+      "formal": 5,
+      "wedding": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "black",
     "material": "faux leather",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 5,
     "warmth": 1,
+
     "tags": [
       "stiletto",
       "pointed toe",
       "classic",
-      "elegant"
+      "elegant",
+      "formal"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598619/black-pointed-toe-stiletto-heels_npqa3t.png",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "ws002",
     "name": "Tan Strappy Flat Sandals",
     "gender": "women",
     "category": "shoes",
     "subCategory": "sandals",
-    "style": ["casual", "minimal", "resort"],
-    "occasion": ["vacation", "casual", "travel", "daily"],
+
+    "style": ["casual", "minimal", "resort", "feminine"],
+    "styleScores": {
+      "casual": 5,
+      "minimal": 5,
+      "resort": 5,
+      "feminine": 4
+    },
+
+    "occasion": ["vacation", "casual", "travel", "daily", "brunch"],
+    "occasionScores": {
+      "vacation": 5,
+      "casual": 5,
+      "travel": 5,
+      "daily": 4,
+      "brunch": 5
+    },
+
     "season": ["spring", "summer"],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 5
+    },
+
     "color": "tan",
     "material": "faux leather",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 2,
     "warmth": 1,
+
     "tags": [
       "flat",
       "summer",
       "minimal",
-      "comfortable"
+      "comfortable",
+      "vacation"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598547/tan-strappy-flat-sandals_bz70l4.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "ws003",
     "name": "Beige Ballet Flats",
     "gender": "women",
     "category": "shoes",
     "subCategory": "flats",
-    "style": ["minimal", "casual", "classic"],
-    "occasion": ["office", "college", "casual", "daily"],
-    "season": ["all-season"],
+
+    "style": ["minimal", "classic", "feminine", "casual"],
+    "styleScores": {
+      "minimal": 5,
+      "classic": 5,
+      "feminine": 5,
+      "casual": 4
+    },
+
+    "occasion": ["office", "college", "casual", "daily", "brunch", "date"],
+    "occasionScores": {
+      "office": 4,
+      "college": 4,
+      "casual": 5,
+      "daily": 5,
+      "brunch": 5,
+      "date": 4
+    },
+
+    "season": ["spring", "summer", "autumn"],
+    "seasonScores": {
+      "spring": 5,
+      "summer": 4,
+      "autumn": 4
+    },
+
     "color": "beige",
     "material": "faux leather",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 3,
     "warmth": 1,
+
     "tags": [
       "ballet flats",
       "comfortable",
       "versatile",
-      "classic"
+      "classic",
+      "minimal"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598593/beige-ballet-flats_w7ojjn.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "ws004",
     "name": "Brown Block Heel Ankle Boots",
     "gender": "women",
     "category": "shoes",
     "subCategory": "ankle boots",
-    "style": ["classic", "smart casual", "minimal"],
-    "occasion": ["office", "travel", "casual", "date"],
-    "season": ["autumn", "winter"],
+
+    "style": ["classic", "smart casual", "minimal", "trendy"],
+    "styleScores": {
+      "classic": 5,
+      "smart casual": 5,
+      "minimal": 3,
+      "trendy": 4
+    },
+
+    "occasion": ["office", "travel", "casual", "date", "daily"],
+    "occasionScores": {
+      "office": 4,
+      "travel": 4,
+      "casual": 5,
+      "date": 5,
+      "daily": 4
+    },
+
+    "season": ["autumn", "winter", "spring"],
+    "seasonScores": {
+      "autumn": 5,
+      "winter": 5,
+      "spring": 3
+    },
+
     "color": "brown",
     "material": "leather",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 4,
+
     "tags": [
       "ankle boots",
       "block heel",
       "winter",
-      "classic"
+      "classic",
+      "autumn"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598547/brown-block-heel-ankle-boots_vdcnfu.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "ws005",
     "name": "Black Block Heel Sandals",
     "gender": "women",
     "category": "shoes",
     "subCategory": "heels",
-    "style": ["minimal", "formal", "party"],
-    "occasion": ["party", "formal", "date", "wedding"],
+
+    "style": ["elegant", "party", "formal", "minimal"],
+    "styleScores": {
+      "elegant": 5,
+      "party": 5,
+      "formal": 4,
+      "minimal": 3
+    },
+
+    "occasion": ["party", "date", "wedding", "night out", "formal"],
+    "occasionScores": {
+      "party": 5,
+      "date": 5,
+      "wedding": 5,
+      "night out": 5,
+      "formal": 4
+    },
+
     "season": ["spring", "summer"],
+    "seasonScores": {
+      "spring": 4,
+      "summer": 5
+    },
+
     "color": "black",
     "material": "faux leather",
+    "materialScore": 4,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 4,
     "warmth": 1,
+
     "tags": [
       "block heel",
       "dressy",
       "elegant",
-      "versatile"
+      "party",
+      "night out"
     ],
-   "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598600/black-block-heel-sandals_rqcsme.jpg",
+
+    "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598600/black-block-heel-sandals_rqcsme.jpg",
     "favorite": false,
     "archived": false
   },
+
   {
     "id": "ws006",
     "name": "White Minimal Sneakers",
     "gender": "women",
     "category": "shoes",
     "subCategory": "sneakers",
-    "style": ["minimal", "casual", "streetwear"],
+
+    "style": ["minimal", "casual", "streetwear", "classic"],
+    "styleScores": {
+      "minimal": 5,
+      "casual": 5,
+      "streetwear": 4,
+      "classic": 4
+    },
+
     "occasion": ["college", "travel", "casual", "daily"],
+    "occasionScores": {
+      "college": 5,
+      "travel": 5,
+      "casual": 5,
+      "daily": 5
+    },
+
     "season": ["all-season"],
+    "seasonScores": {
+      "all-season": 5
+    },
+
     "color": "white",
     "material": "leather",
+    "materialScore": 5,
+
     "fit": "regular",
+    "fitScore": 4,
+
     "layering": false,
     "formality": 2,
     "warmth": 2,
+
     "tags": [
       "white sneakers",
       "minimal",
       "everyday",
-      "versatile"
+      "versatile",
+      "casual"
     ],
+
     "imageUrl": "https://res.cloudinary.com/ezw1ohrj/image/upload/v1783598547/white-minimal-sneakers_wmyzsj.jpg",
     "favorite": false,
     "archived": false
