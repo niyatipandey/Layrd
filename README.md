@@ -31,212 +31,300 @@ Layrd is a full-stack MERN styling tool that helps users figure out if an outfit
 
 ------------------------------------------------------------------------
 
-# ✨ Features
+## ✨ Features
 
-## 🔐 Authentication
+### 🔐 Authentication
+- User Registration & Login
+- JWT Authentication
+- Password Hashing with bcrypt
+- Protected Routes
+- User-specific saved outfits
 
--   User Registration & Login
--   JWT Authentication
--   Password Hashing (bcrypt)
--   Protected Routes
--   User-specific saved outfits
+### 👗 Clothing Library
+- Browse curated clothing inventory
+- Category filtering
+- Search clothing items
+- Rich clothing metadata including style, occasion, season, color, formality, fit, and material
 
-## 👗 Clothing Library
-
--   Browse curated wardrobe
--   Category filters
--   Search clothing
--   Premium editorial UI
--   Rich clothing metadata
-
-## 🎨 Outfit Builder
-
-- Drag & Drop on desktop
-- Tap-to-add interaction on mobile
-- Four dedicated outfit slots
+### 🎨 Outfit Builder
+- Drag-and-drop interactions on desktop
+- Tap-to-select interactions on mobile
+- Four dedicated outfit slots: Top, Bottom, Shoes, and Accessory
 - Category validation
-- Replace/remove items
-- Clear outfit
-- Save complete outfits
+- Replace and remove items
+- Clear outfit canvas
+- Save outfits
+- Automatically clear previous recommendations when starting a new outfit
 
-## 🧥 My Wardrobe
+### 🧥 My Wardrobe
+- View saved outfits
+- Outfit preview cards
+- Delete saved outfits
+- User-specific wardrobe persistence
 
--   View saved outfits
--   Outfit preview cards
--   Delete saved outfits
--   User-specific wardrobe
+### 🤖 AI Stylist
+- Powered by the Groq API
+- Detects missing outfit categories
+- Generates outfit combinations using available wardrobe items
+- Prevents recommendations outside the available inventory
+- Considers style and occasion combinations
+- Returns multiple outfit candidates
 
-## 🤖 AI Stylist
+### 📊 Outfit Recommendation Scoring
 
--   Powered by Groq
--   Detects missing outfit categories
--   Suggests only wardrobe items
--   Considers style, occasion, season and color compatibility
--   Automatically fills missing outfit slots
+Recommendations are evaluated using a multi-factor scoring system considering:
 
-## 📱 Responsive Experience
+- Style compatibility
+- Occasion suitability
+- Color compatibility
+- Formality consistency
+- Outfit fit harmony
+- Seasonal suitability
 
+Recommendations are ranked based on their final outfit score.
+
+### 📱 Responsive Experience
 - Responsive UI across desktop and mobile
-- Drag-and-drop on desktop
-- Tap-to-add interactions on mobile
+- Drag-and-drop outfit building on desktop
+- Tap-to-select clothing interactions on mobile
+- Smooth scrolling between wardrobe selection, canvas, and recommendations
 
-------------------------------------------------------------------------
+---
 
-# 🛠 Tech Stack
+## 🛠 Tech Stack
 
-  Layer            Technology
-  ---------------- ---------------------------
-  Frontend         React, Vite, Tailwind CSS
-  Backend          Node.js, Express.js
-  Database         MongoDB, Mongoose
-  Authentication   JWT, bcryptjs
-  AI               Groq API
-  Drag & Drop      @dnd-kit/core
+| Layer | Technology |
+|---|---|
+| Frontend | React, Vite, Tailwind CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Authentication | JWT, bcryptjs |
+| AI | Groq API |
+| Recommendation Ranking | Rule-Based Scoring Engine |
+| Drag & Drop | @dnd-kit/core |
+
+---
 
 ## ☁️ Deployment
 
-Frontend: Vercel
+| Service | Platform |
+|---|---|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | MongoDB Atlas |
 
-Backend: Render
+---
 
-Database: MongoDB Atlas
+## 🤖 Recommendation Pipeline
 
-------------------------------------------------------------------------
+Layrd does not allow the AI to recommend arbitrary clothing. All recommendations are grounded in clothing items available in the application's inventory.
 
-# 🤖 AI Recommendation Pipeline
-
-Unlike traditional AI outfit generators, Layrd **never invents
-clothing**. Recommendations are restricted to clothing that already
-exists inside the wardrobe.
-
-``` text
-User builds outfit on Canvas
+````
+User builds partial outfit
             │
             ▼
 Detect missing categories
             │
             ▼
-Fetch only matching wardrobe items
+Fetch matching wardrobe items
             │
             ▼
-Convert wardrobe into structured prompt
+Convert inventory into structured prompt context
             │
             ▼
-Groq generates recommendations
+Groq generates outfit candidates
             │
             ▼
 Validate returned item names
-against MongoDB
+against MongoDB inventory
             │
             ▼
-Return complete clothing objects
+Build complete outfit objects
             │
             ▼
-Automatically fill canvas
+Multi-factor scoring engine
+            │
+            ├── Style
+            ├── Occasion
+            ├── Color Compatibility
+            ├── Formality
+            ├── Outfit Harmony
+            └── Season
+            │
+            ▼
+Rank recommendations
+            │
+            ▼
+Return top outfit ideas
+            │
+            ▼
+User can load outfit onto Canvas
+````
+
+---
+
+## 📊 Outfit Scoring System
+
+Each generated outfit is evaluated using multiple independent scoring factors.
+
+### Style Score
+Measures how well each clothing item matches the requested outfit style. Items contain style-specific scores:
+
+```json
+{
+  "minimal": 5,
+  "casual": 4,
+  "streetwear": 3
+}
 ```
 
-### Pipeline
+Different clothing categories contribute to the overall style compatibility of an outfit.
 
-1.  User drags clothing onto the outfit canvas.
-2.  Backend identifies missing categories.
-3.  MongoDB returns only relevant clothing items.
-4.  Backend converts wardrobe into structured context.
-5.  Groq receives:
-    -   Current outfit
-    -   Available wardrobe
-    -   Style rules
-    -   JSON response instructions
-6.  Groq returns structured JSON.
-7.  Backend validates returned names against MongoDB.
-8.  Complete clothing documents are returned.
-9.  Frontend updates the missing outfit slots.
+### Occasion Score
+Measures how suitable each clothing item is for the requested occasion. Supported occasions:
 
-------------------------------------------------------------------------
+- College
+- Office
+- Travel
+- Date
+- Party
+- Formal
+- Daily
+- Brunch
 
-# 🏗 Architecture
+### Color Compatibility
+Evaluates color relationships between outfit components. Comparisons include:
 
-``` text
-React Frontend
-      │
-      ▼
-Express REST API
-      │
-      ├────────► MongoDB
-      │
-      └────────► Groq API
-                   │
-                   ▼
-          Recommendation JSON
-                   │
-                   ▼
-        MongoDB Validation
-                   │
-                   ▼
-            React Canvas
-```
+- Top ↔ Bottom
+- Top ↔ Shoes
+- Bottom ↔ Shoes
+- Top ↔ Accessory
+- Bottom ↔ Accessory
 
-------------------------------------------------------------------------
+### Formality Compatibility
+Measures whether clothing items belong to compatible levels of formality.
 
-# 📂 Database Models
+| Difference | Compatibility |
+|---|---|
+| Same formality level | High compatibility |
+| Difference of 1 level | Strong compatibility |
+| Difference of 2 levels | Moderate compatibility |
+| Large difference | Low compatibility |
+
+### Outfit Harmony
+Evaluates compatibility between clothing silhouettes and fits. Examples:
+
+- Slim + Wide Leg
+- Oversized + Slim
+- Regular + Wide Leg
+- Bodycon + Oversized
+
+This helps prevent visually conflicting outfit combinations.
+
+### Seasonal Suitability
+Evaluates how appropriate the selected clothing items are for the requested season. Supported seasons:
+
+- Spring
+- Summer
+- Autumn
+- Winter
+- All-season
+
+---
+
+## 🏗 Architecture
+
+````
+                    React Frontend
+                          │
+                          ▼
+                    Express REST API
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+              ▼                       ▼
+           MongoDB                 Groq API
+              │                       │
+              │                       ▼
+              │              Outfit Candidates
+              │                       │
+              ▼                       ▼
+       Clothing Inventory ───► Validation Layer
+                                      │
+                                      ▼
+                              Outfit Scoring Engine
+                                      │
+                                      ▼
+                              Ranked Recommendations
+                                      │
+                                      ▼
+                                 React Canvas
+````
+
+---
+
+## 📂 Database Models
 
 ### User
-
-``` json
+```json
 {
-  "name":"String",
-  "email":"String",
-  "passwordHash":"String"
+  "name": "String",
+  "email": "String",
+  "passwordHash": "String"
 }
 ```
 
 ### ClothingItem
-
-``` json
+```json
 {
-  "name":"String",
-  "category":"String",
-  "subCategory":"String",
-  "style":["String"],
-  "occasion":["String"],
-  "season":["String"],
-  "color":"String",
-  "imageUrl":"String"
+  "name": "String",
+  "category": "String",
+  "subCategory": "String",
+  "style": ["String"],
+  "styleScores": { "styleName": "Number" },
+  "occasion": ["String"],
+  "occasionScores": { "occasionName": "Number" },
+  "season": ["String"],
+  "seasonScores": { "seasonName": "Number" },
+  "color": "String",
+  "material": "String",
+  "formality": "Number",
+  "fit": "String",
+  "imageUrl": "String"
 }
 ```
 
 ### Outfit
-
-``` json
+```json
 {
-  "userId":"ObjectId",
-  "top":"ObjectId",
-  "bottom":"ObjectId",
-  "shoes":"ObjectId",
-  "accessory":"ObjectId"
+  "userId": "ObjectId",
+  "top": "ObjectId",
+  "bottom": "ObjectId",
+  "shoes": "ObjectId",
+  "accessory": "ObjectId"
 }
 ```
 
-------------------------------------------------------------------------
+---
 
-# 📡 API Reference
+## 📡 API Reference
 
-  Method   Endpoint              Description
-  -------- --------------------- ----------------------
-  POST     /auth/register        Register user
-  POST     /auth/login           Login
-  GET      /items                Fetch clothing
-  GET      /items?category=top   Category filter
-  POST     /outfits              Save outfit
-  GET      /outfits              Get outfits
-  DELETE   /outfits/:id          Delete outfit
-  POST     /ai/suggest           AI outfit completion
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/auth/register` | Register user |
+| POST | `/auth/login` | Login user |
+| GET | `/items` | Fetch clothing |
+| GET | `/items?category=top` | Filter clothing by category |
+| POST | `/outfits` | Save outfit |
+| GET | `/outfits` | Get saved outfits |
+| DELETE | `/outfits/:id` | Delete outfit |
+| POST | `/ai/suggest` | Generate and rank outfit recommendations |
 
-------------------------------------------------------------------------
+---
 
-# 💻 Local Setup
+## 💻 Local Setup
 
-## Prerequisites
-
+### Prerequisites
 - Node.js
 - MongoDB Atlas account
 - Groq API Key
@@ -278,27 +366,13 @@ npm install
 npm run dev
 ```
 
-Open your browser at:
+Open your browser at: [http://localhost:5173](http://localhost:5173)
 
-```text
-http://localhost:5173
-```
+---
 
-------------------------------------------------------------------------
+## 📁 Project Structure
 
-# ⚙ Technical Challenges
-
--   Designing structured prompts for consistent JSON responses.
--   Preventing AI from recommending unavailable clothing.
--   Mapping Groq responses back to MongoDB documents.
--   Building drag-and-drop interactions with category validation.
--   Maintaining user-specific wardrobes using JWT authentication.
-
-------------------------------------------------------------------------
-
-# 📁 Project Structure
-
-``` text
+````
 Layrd/
 ├── client/
 │   ├── assets/
@@ -306,48 +380,70 @@ Layrd/
 │   ├── context/
 │   ├── pages/
 │   └── utils/
+│
 └── server/
     ├── controllers/
     ├── middleware/
     ├── models/
     ├── routes/
-    ├── data/
     ├── services/
+    ├── data/
     └── seed.js
-```
------------------------------------------------------------------------- 
+````
 
-# 🚀 Future Improvements
+---
+
+## ⚙️ Technical Challenges
+
+- Designing structured prompts for consistent AI responses
+- Preventing AI from recommending unavailable clothing
+- Constraining LLM recommendations to inventory data
+- Mapping AI responses back to MongoDB documents
+- Designing a multi-factor outfit scoring system
+- Balancing subjective fashion attributes such as style and occasion using structured metadata
+- Building responsive drag-and-drop and mobile touch interactions
+- Maintaining user-specific outfits using JWT authentication
+
+---
+
+## 🚀 Future Improvements
 
 - Upload personal wardrobe images
+- Automatic clothing metadata extraction
 - AI-generated outfit explanations
-- Favorite outfits
+- Favorite outfit recommendations
 - Occasion-based outfit collections
+- Improved recommendation scoring calibration
+- User preference learning
+- Personalized style profiles
 - Dark mode
 
-------------------------------------------------------------------------
+---
 
-# 📖 What I Learned
+## 📖 What I Learned
 
--   Building JWT authentication.
--   Designing REST APIs.
--   MongoDB data modeling with Mongoose.
--   Drag-and-drop interfaces using @dnd-kit.
--   Prompt engineering for structured AI        responses.
--   Integrating Groq into a complete application workflow.
--   Building an end-to-end MERN project from idea to deployment.
+- Building JWT-based authentication systems
+- Designing REST APIs with Express.js
+- MongoDB data modeling with Mongoose
+- Building drag-and-drop interfaces using @dnd-kit
+- Designing structured prompts for LLM applications
+- Constraining AI output using application data
+- Validating LLM responses against database records
+- Designing rule-based ranking systems alongside LLM-generated results
+- Building responsive desktop and mobile interaction patterns
+- Deploying an end-to-end MERN application
 
-------------------------------------------------------------------------
+---
 
-# 💡 Why Layrd?
+## 💡 Why Layrd?
 
-Most outfit tools either store clothes or generate random looks.
+Most wardrobe applications either store clothing or generate completely arbitrary AI outfits.
 
-**Layrd does something different — it lets you test the outfit that's already in your head.**
+Layrd combines visual outfit building, inventory-grounded AI recommendations, and rule-based outfit ranking. Users can start with an item they already own, build part of an outfit visually, and ask the AI stylist to complete the missing pieces.
 
-You know the silhouette you want. You don't know what completes it. Layrd gives you a visual canvas to build combinations by style type and lets an AI stylist fill the gaps — constrained strictly to what's in the catalogue, never inventing items that don't exist.
+The recommendation system only considers available inventory and evaluates generated combinations using structured fashion attributes such as style, occasion, color compatibility, formality, outfit harmony, and season.
 
-The goal is to make the gap between imagining an outfit and validating it as small as possible.
-
+The goal is to reduce the gap between imagining an outfit and understanding whether the complete combination actually works.
+````
 **Built with ❤️ using React • Node.js • MongoDB • Groq API**
 
