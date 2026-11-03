@@ -10,6 +10,7 @@ import { useContext } from 'react'
 import AuthContext from './context/AuthContext'
 import LandingPage from './pages/LandingPage'
 import { Toaster } from "react-hot-toast";
+import { Analytics } from '@vercel/analytics/react';
 
 const ProtectedRoute = ({children})=>{
     const {token} = useContext(AuthContext);
@@ -43,6 +44,7 @@ const App = () => {
         }
         />
       </Routes>
+      <Analytics />
     </>
   )
 }
